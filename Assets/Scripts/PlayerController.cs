@@ -49,7 +49,11 @@ public class PlayerController : MonoBehaviour
         // Translation avant/arrière
         Vector2 direction = this.transform.up;
         if (vertical > 0) { 
-            myRigidBody.AddForce(direction* positiveAddForce); 
+            
+            if (InInfluenceSphereCelestialBodies.Count == 0)
+                myRigidBody.AddForce(direction * positiveAddForce);
+            else
+                myRigidBody.AddForce(direction * positiveAddForce * 0.8f);
         }
         else if (vertical < 0)
         {
@@ -63,7 +67,7 @@ public class PlayerController : MonoBehaviour
         // Force des autres corps
         foreach (CelestialBody cb in InInfluenceSphereCelestialBodies)
         {
-            Vector2 gravityDirection = cb.GetComponent<Rigidbody2D>().position - myRigidBody.position;
+            Vector2 gravityDirection = (cb.GetComponent<Rigidbody2D>().position - myRigidBody.position).normalized;
             myRigidBody.AddForce(gravityDirection * cb.gravityForce);
         }
     }
@@ -74,6 +78,7 @@ public class PlayerController : MonoBehaviour
         if (cb != null)
         {
             InInfluenceSphereCelestialBodies.Add(cb);
+            myRigidBody.drag = 0;
         }
 
         Collectible collectible = collision.gameObject.GetComponent<Collectible>();
@@ -87,10 +92,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        CelestialBody cb = collision.gameObject.GetComponent<CelestialBody>(); ;
+        CelestialBody cb = collision.gameObject.GetComponent<CelestialBody>();
         if (cb != null)
         {
             InInfluenceSphereCelestialBodies.Remove(cb);
+            if (InInfluenceSphereCelestialBodies.Count == 0)
+                myRigidBody.drag = 0.5f;
         }
     }
 
