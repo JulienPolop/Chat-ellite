@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
         if (collectible != null)
         {
             projectileCount++;
-            Destroy(collision.gameObject);
+            collectible.DestroyThis();
         }
     }
 
@@ -91,4 +91,6 @@ public class PlayerController : MonoBehaviour
             InInfluenceSphereCelestialBodies.Remove(cb);
         }
     }
+
+    
 }

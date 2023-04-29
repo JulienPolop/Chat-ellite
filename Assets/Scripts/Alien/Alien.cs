@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Alien : MonoBehaviour
+public class Alien : Collectible
 {
     public SpriteRenderer visual;
     public List<Color> colorPossible;
@@ -30,4 +30,13 @@ public class Alien : MonoBehaviour
         this.transform.position = new Vector3(xPos, yPos, 0);
     }
 
+
+    public override void DestroyThis()
+    {
+        //make some particule
+        //or even animation !
+
+        //then : 
+        base.DestroyThis();
+    }
 }
