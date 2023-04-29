@@ -41,7 +41,7 @@ AudioSource:
   m_GameObject: {fileID: 600937015046862534}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 12bc0513e028c2c4a899a79307de7ce7, type: 2}
   m_audioClip: {fileID: 8300000, guid: 1260cefe2a5db76419a331710dc6ffcc, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -218,11 +218,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed39b7f431255ea4a96e302d27a35b4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  masterMixer: {fileID: 24100000, guid: 12bc0513e028c2c4a899a79307de7ce7, type: 2}
   musicIntro: {fileID: 600937016517659418}
   musicLoop: {fileID: 600937015046862528}
   crossFadeDuration: 0.2
   crossFadeOffset: 1
-  volume: 1
+  volume: 0.5
+  volumeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: -80
+      inSlope: 260
+      outSlope: 260
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.25
+      value: -15
+      inSlope: 160
+      outSlope: 160
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 0
+      inSlope: 22.340858
+      outSlope: 22.340858
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.15105736
+    - serializedVersion: 3
+      time: 1
+      value: 10
+      inSlope: 20
+      outSlope: 20
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &600937016517659416
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,7 +307,7 @@ AudioSource:
   m_GameObject: {fileID: 600937016517659416}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 12bc0513e028c2c4a899a79307de7ce7, type: 2}
   m_audioClip: {fileID: 8300000, guid: 7f4f7d041e84ee7448b4bf9b2ddf1e3c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

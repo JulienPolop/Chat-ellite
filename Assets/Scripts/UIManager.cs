@@ -30,4 +30,10 @@ public class UIManager : MonoBehaviour
         lastNumberProjo = numberProjo;
     }
     
+
+
+    public void OnVolumeSliderChange(float value)
+    {
+        LevelManager.instance.music.volume = value;
+    }
 }

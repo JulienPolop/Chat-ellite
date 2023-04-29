@@ -43,6 +43,8 @@ public class CelestialBody : MonoBehaviour
     //Pour dessiner dans l'editeur
     private void OnDrawGizmos()
     {
+#if UNITY_EDITOR
         UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.back, gravityDistance);
+#endif
     }
 }

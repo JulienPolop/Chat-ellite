@@ -12,6 +12,8 @@ public class LevelManager : MonoBehaviour
         {
             instance = this;
             SetUpMissingElement();
+
+            Screen.fullScreen = true;
         }
         else
         {
@@ -45,6 +47,18 @@ public class LevelManager : MonoBehaviour
         if (music == null)
         {
             music = FindObjectOfType<MusicManager>();
+        }
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Screen.fullScreen = false;
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Screen.fullScreen = !Screen.fullScreen;
         }
     }
 }
