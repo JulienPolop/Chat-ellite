@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
 
     private List<CelestialBody> InInfluenceSphereCelestialBodies = new List<CelestialBody>(); // La liste des corps qui on une force d'influence sur nous
 
+    public List<Animator> reactors = new List<Animator>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,6 +71,11 @@ public class PlayerController : MonoBehaviour
         {
             Vector2 gravityDirection = (cb.GetComponent<Rigidbody2D>().position - myRigidBody.position).normalized;
             myRigidBody.AddForce(gravityDirection * cb.gravityForce);
+        }
+
+        foreach(Animator reactor in reactors)
+        {
+            reactor.SetFloat("Speed", myRigidBody.velocity.magnitude / 10f);
         }
     }
 

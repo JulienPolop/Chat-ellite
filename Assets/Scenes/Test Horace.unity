@@ -2743,6 +2743,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6563029143296084284, guid: bf4483313a890fb44b223fd680e8a78f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6563029143296084284, guid: bf4483313a890fb44b223fd680e8a78f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8125654281819105154, guid: bf4483313a890fb44b223fd680e8a78f, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2790,6 +2798,18 @@ PrefabInstance:
     - target: {fileID: 8125654281819105214, guid: bf4483313a890fb44b223fd680e8a78f, type: 3}
       propertyPath: m_Name
       value: Joueur
+      objectReference: {fileID: 0}
+    - target: {fileID: 8687989610013810043, guid: bf4483313a890fb44b223fd680e8a78f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8687989610013810043, guid: bf4483313a890fb44b223fd680e8a78f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.321
+      objectReference: {fileID: 0}
+    - target: {fileID: 8687989610013810043, guid: bf4483313a890fb44b223fd680e8a78f, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf4483313a890fb44b223fd680e8a78f, type: 3}
