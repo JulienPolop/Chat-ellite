@@ -2,29 +2,39 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Movements")]
     public float positiveAddForce = 10.0f; // Force appliqué à chaque frame lorsque le vaisseau doit avancer
     public float negativeAddForce = 10.0f; // Force appliqué à chaque frame lorsque le vaisseau doit reculer
     public float rotationSpeed = 100.0f; // Vitesse de rotation du vaisseau
 
-    public int projectileCount = 0;
+    [Header("Projectiles")]
     public Projectile projectilePrefab;
+    public int projectileCount = 0;
     public float projectileSpeed = 2;
 
-    private Rigidbody2D myRigidBody;
+    [Header("Collectibles")] //Pour en relacher quand on tape rop fort une planète
+    public Collectible collectiblePrefab;
+    public float collectibleSpeed = 1;
 
-    private List<CelestialBody> InInfluenceSphereCelestialBodies = new List<CelestialBody>(); // La liste des corps qui on une force d'influence sur nous
-
+    [Header("Reactors Effects")]
     public List<Animator> reactors = new List<Animator>();
+    public List<TrailRenderer> reactorTrails = new List<TrailRenderer>();
+    public List<TrailRenderer> reverseReactorTrails = new List<TrailRenderer>();
+
+    [Header("References")]
+    public new CameraController camera;
+    private Rigidbody2D myRigidBody;
+    private List<CelestialBody> InInfluenceSphereCelestialBodies = new List<CelestialBody>(); // La liste des corps qui on une force d'influence sur nous
 
     // Start is called before the first frame update
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
-
-        //myRigidBody.velocity = (this.transform.up * (float)Math.Sqrt(2f / 2));
+        LevelManager.instance.ui_man.UpdateUIProjectiles(projectileCount);
     }
 
     private void Update()
@@ -56,10 +66,21 @@ public class PlayerController : MonoBehaviour
                 myRigidBody.AddForce(direction * positiveAddForce);
             else
                 myRigidBody.AddForce(direction * positiveAddForce * 0.8f);
+
+            reactorTrails.ForEach(tr => { if (!tr.emitting) tr.emitting = true; });
+            reverseReactorTrails.ForEach(tr => { if (tr.emitting) tr.emitting = false; });
         }
         else if (vertical < 0)
         {
             myRigidBody.AddForce(direction * -negativeAddForce);
+
+            reactorTrails.ForEach(tr => { if (tr.emitting) tr.emitting = false; });
+            reverseReactorTrails.ForEach(tr => { if (!tr.emitting) tr.emitting = true; });
+        }
+        else
+        {
+            reactorTrails.ForEach(tr => { if (tr.emitting) tr.emitting = false; });
+            reverseReactorTrails.ForEach(tr => { if (tr.emitting) tr.emitting = false; });
         }
 
 
@@ -108,5 +129,34 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.relativeVelocity.magnitude);
+        if (collision.relativeVelocity.magnitude < 4)
+        {
+            if (camera)
+                camera.ShakeCameraLittle();
+        }
+        else if (collision.relativeVelocity.magnitude >= 4 && collision.relativeVelocity.magnitude < 8)
+        {
+            if (camera)
+                camera.ShakeCameraStandard();
+        }
+        else if (collision.relativeVelocity.magnitude >= 8)
+        {
+            if (camera)
+                camera.ShakeCameraBig();
+
+            if (projectileCount > 0)
+            {
+                projectileCount--;
+                LevelManager.instance.ui_man.UpdateUIProjectiles(projectileCount);
+                Collectible proj = Instantiate(collectiblePrefab, myRigidBody.position, transform.rotation);
+
+                Vector2 direction = ((Vector2)collision.transform.position - myRigidBody.position).normalized;
+                proj.GetComponent<Collider2D>().enabled = false;
+                proj.GetComponent<Rigidbody2D>().velocity = - direction * collectibleSpeed;
+            }
+        }
+    }
 }
