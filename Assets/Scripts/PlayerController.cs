@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
             if (projectileCount > 0)
             {
                 projectileCount--;
+                LevelManager.instance.ui_man.UpdateUIProjectiles(projectileCount);
                 Projectile proj = Instantiate(projectilePrefab, myRigidBody.position, transform.rotation);
                 proj.GetComponent<Rigidbody2D>().velocity = transform.up * projectileSpeed;
             }
@@ -79,6 +80,7 @@ public class PlayerController : MonoBehaviour
         if (collectible != null)
         {
             projectileCount++;
+            LevelManager.instance.ui_man.UpdateUIProjectiles(projectileCount);
             collectible.DestroyThis();
         }
     }

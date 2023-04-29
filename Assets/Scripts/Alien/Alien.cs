@@ -12,7 +12,7 @@ public class Alien : Collectible
     // Start is called before the first frame update
     void Start()
     {
-        cam = FindObjectOfType<CameraController>();
+        cam = LevelManager.instance.cam;
         RandomizePosAndCol();
     }
 
