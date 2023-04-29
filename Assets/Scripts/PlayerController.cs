@@ -9,6 +9,10 @@ public class PlayerController : MonoBehaviour
     public float negativeAddForce = 10.0f; // Force appliqué à chaque frame lorsque le vaisseau doit reculer
     public float rotationSpeed = 100.0f; // Vitesse de rotation du vaisseau
 
+    public int projectileCount = 0;
+    public Projectile projectilePrefab;
+    public float projectileSpeed = 2;
+
     private Rigidbody2D myRigidBody;
 
     private List<CelestialBody> InInfluenceSphereCelestialBodies = new List<CelestialBody>(); // La liste des corps qui on une force d'influence sur nous
@@ -18,7 +22,20 @@ public class PlayerController : MonoBehaviour
     {
         myRigidBody = GetComponent<Rigidbody2D>();
 
-        myRigidBody.velocity = (this.transform.up * (float)Math.Sqrt(2f / 2));
+        //myRigidBody.velocity = (this.transform.up * (float)Math.Sqrt(2f / 2));
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (projectileCount > 0)
+            {
+                projectileCount--;
+                Projectile proj = Instantiate(projectilePrefab, myRigidBody.position, transform.rotation);
+                proj.GetComponent<Rigidbody2D>().velocity = transform.up * projectileSpeed;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -56,6 +73,13 @@ public class PlayerController : MonoBehaviour
         if (cb != null)
         {
             InInfluenceSphereCelestialBodies.Add(cb);
+        }
+
+        Collectible collectible = collision.gameObject.GetComponent<Collectible>();
+        if (collectible != null)
+        {
+            projectileCount++;
+            Destroy(collision.gameObject);
         }
     }
 
