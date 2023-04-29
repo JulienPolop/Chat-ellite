@@ -42,7 +42,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c782ea41f6bd36f4997a19351236211d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1260cefe2a5db76419a331710dc6ffcc, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -220,6 +220,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicIntro: {fileID: 600937016517659418}
   musicLoop: {fileID: 600937015046862528}
+  crossFadeDuration: 0.2
+  crossFadeOffset: 1
+  volume: 1
 --- !u!1 &600937016517659416
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,8 +265,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 7f4f7d041e84ee7448b4bf9b2ddf1e3c, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
