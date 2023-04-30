@@ -26,6 +26,7 @@ public class LevelManager : MonoBehaviour
 
     public PlayerController player;
     public CameraController cam;
+    public AlienSpawner spawner;
     public UIManager ui_man;
     public MusicManager music;
 
@@ -39,6 +40,10 @@ public class LevelManager : MonoBehaviour
         if (cam == null)
         {
             cam = FindObjectOfType<CameraController>();
+        }
+        if (spawner == null)
+        {
+            spawner = FindObjectOfType<AlienSpawner>();
         }
         if (ui_man == null)
         {

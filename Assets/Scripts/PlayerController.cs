@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [Header("Projectiles")]
     public Projectile projectilePrefab;
     public int projectileCount = 0;
+    public int collectibleCount = 0;
     public float projectileSpeed = 2;
 
     [Header("Collectibles")] //Pour en relacher quand on tape rop fort une planète
