@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class CelestialBody : MonoBehaviour
 {
-    public float gravityForce; // Force d'attraction appliqué au joueur à chaque frame
-    public float gravityDistance; // Distance maximal d'attraction appliqué au joueur à chaque frame
+    public bool hasGravity = true;
+    public float gravityForce = 1; // Force d'attraction appliqué au joueur à chaque frame
+    public float gravityDistance = 10; // Distance maximal d'attraction appliqué au joueur à chaque frame
     public CircleCollider2D gravityCollider;
 
     public List<Transform> innerAtmosphere = new List<Transform>();
@@ -19,7 +20,20 @@ public class CelestialBody : MonoBehaviour
 
     private void Start()
     {
-        gravityCollider.radius = gravityDistance;
+        if (!gravityCollider)
+            hasGravity = false;
+
+        if (hasGravity)
+        {
+            gravityCollider.radius = gravityDistance;
+        }
+        else
+        {
+            if (gravityCollider)
+                gravityCollider.enabled = false;
+        }
+        
+
         if(possibleColor.Count != 0)
             col = possibleColor[Random.Range(0, possibleColor.Count)];
         foreach (SpriteRenderer sR in coloredSprite)
@@ -35,7 +49,9 @@ public class CelestialBody : MonoBehaviour
             sR.color = col;
         }
 
-        DrawCircle(this.gameObject, gravityDistance, 0.025f) ;
+        if (hasGravity)
+            DrawCircle(this.gameObject, gravityDistance, 0.025f) ;
+
 
         transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
 
@@ -76,7 +92,8 @@ public class CelestialBody : MonoBehaviour
     private void OnDrawGizmos()
     {
 #if UNITY_EDITOR
-        UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.back, gravityDistance);
+        if (hasGravity)
+            UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.back, gravityDistance);
 #endif
     }
 }

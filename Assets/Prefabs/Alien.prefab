@@ -49,8 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a10247e8dfda8549ac1fad6c70ce53d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerCantBeCollected: 0.5
-  canBeCollected: 0
+  timerCantBeCollected: 0
+  canBeCollected: 1
   visual: {fileID: 3304249607764403123}
   colorPossible:
   - {fileID: 21300000, guid: cc8bbdd8ef5a95e4aa8d446e2cc74c11, type: 3}
