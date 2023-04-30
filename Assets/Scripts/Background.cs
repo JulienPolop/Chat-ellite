@@ -87,7 +87,7 @@ public class Background : MonoBehaviour
         parent.localPosition = transform.position * offset;
         foreach (Transform tr in transforms)
         {
-            Vector3 direction = tr.position - LevelManager.instance.cam.transform.position;
+            Vector3 direction = tr.position - (LevelManager.instance != null ? LevelManager.instance.cam.transform : Menu.instance.cam.transform).position;
             direction.z = 0; //flatten the difference
             float dist = direction.sqrMagnitude;
             if (dist > treshold * treshold)

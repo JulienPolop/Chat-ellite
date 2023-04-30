@@ -34,6 +34,6 @@ public class UIManager : MonoBehaviour
 
     public void OnVolumeSliderChange(float value)
     {
-        LevelManager.instance.music.volume = value;
+        MusicManager.instance.volume = value;
     }
 }

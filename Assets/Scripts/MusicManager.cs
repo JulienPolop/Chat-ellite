@@ -5,19 +5,47 @@ using UnityEngine.Audio;
 
 public class MusicManager : MonoBehaviour
 {
+    public static MusicManager instance = null;
+
     public AudioMixer masterMixer;
+    public AudioSource musicMenu;
     public AudioSource musicIntro;
     public AudioSource musicLoop;
+    public AudioSource musicLoose;
 
+    Coroutine loopCoroutine = null;
+
+    public float menuFadeDuration = 0.2f;
     public float crossFadeDuration = 0.5f;
     public float crossFadeOffset = 0.5f;
+    public float crossLostDuration = 0.2f;
+    public float backMenuDuration = 0.2f;
     [Range(0,1)]
     public float volume = 1;
     public AnimationCurve volumeCurve;
 
     private void Start()
     {
-        StartCoroutine(MusiqueAndLoop());
+        if(instance != null)
+        {
+            if (LevelManager.instance != null)
+                LevelManager.instance.music = instance; //in case the ref break
+            Destroy(this.gameObject);
+            return;
+        }
+        instance = this;
+        transform.SetParent(null);
+        DontDestroyOnLoad(this.gameObject);
+
+        if(Menu.instance != null)
+        {
+            //Lunch menu music
+            musicMenu.Play();
+        }
+        else
+        {
+            loopCoroutine = StartCoroutine(MusiqueAndLoop());
+        }
     }
 
     public void Update()
@@ -32,7 +60,6 @@ public class MusicManager : MonoBehaviour
         if (musicIntro.clip != null)
         {
             musicIntro.Play();
-            Debug.Log("musicIntro.clip.length "+ -crossFadeDuration + " crossFadeDuration "+ musicIntro.clip.length );
             yield return new WaitForSeconds(musicIntro.clip.length - crossFadeDuration - crossFadeOffset);
         }
         else
@@ -51,5 +78,120 @@ public class MusicManager : MonoBehaviour
             yield return 0;
         }
         musicLoop.volume = 1;
+        loopCoroutine = null;
     }
+
+
+    [ContextMenu("_MenuToGame")]
+    public void MenuToGame()
+    {
+        StartCoroutine(MenuToGame_Corout());
+    }
+    [ContextMenu("_LostGame")]
+    public void LostGame()
+    {
+        StartCoroutine(LostGame_Corout());
+    }
+    [ContextMenu("_ReplayGame")]
+    public void ReplayGame()
+    {
+        StartCoroutine(ReplayGame_Corout());
+    }
+    [ContextMenu("_GameToMenu")]
+    public void GameToMenu()
+    {
+        StopAllCoroutines();
+        StartCoroutine(GameToMenu_Corout());
+    }
+
+    IEnumerator MenuToGame_Corout()
+    {
+        if (loopCoroutine != null)
+            StopCoroutine(loopCoroutine);
+
+        float lerp = musicMenu.volume;
+        while(lerp > 0)
+        {
+            lerp -= Time.deltaTime / menuFadeDuration;
+            musicMenu.volume = lerp;
+            yield return 0;
+        }
+        musicMenu.volume = 0;
+        loopCoroutine = StartCoroutine(MusiqueAndLoop());
+    } 
+
+    IEnumerator LostGame_Corout()
+    {
+        if (loopCoroutine != null)
+            StopCoroutine(loopCoroutine);
+
+        float intVol = musicIntro.volume;
+        float lopVol = musicLoop.volume;
+
+        musicMenu.volume = 0;//in case you loose REALLY quickly
+        musicLoose.volume = 0;
+        musicLoose.Play();
+        float lerp = 0;
+        while (lerp < 1)
+        {
+            lerp += Time.deltaTime / crossLostDuration;
+            //Fade
+            musicIntro.volume = intVol * (1 - lerp);
+            musicLoop.volume = lopVol * (1 - lerp);
+            //Rise
+            musicLoose.volume = lerp;
+            yield return 0;
+        }
+        musicIntro.volume = 0;
+        musicLoop.volume = 0;
+        musicLoose.volume = 1;
+    }
+
+    IEnumerator ReplayGame_Corout()
+    {
+        if (loopCoroutine != null)
+            StopCoroutine(loopCoroutine);
+
+        musicIntro.volume = 0;
+        musicLoop.volume  = 0;
+
+        loopCoroutine = StartCoroutine(MusiqueAndLoop());
+        float lerp = musicLoose.volume;
+        while (lerp > 0)
+        {
+            lerp -= Time.deltaTime / crossLostDuration;
+            //Fade
+            musicLoose.volume = lerp;
+            yield return 0;
+        }
+        musicLoose.volume = 0;
+    }
+
+    IEnumerator GameToMenu_Corout()
+    {
+        float intVol = musicIntro.volume;
+        float lopVol = musicLoop.volume;
+        float losVol = musicLoose.volume;
+
+        musicMenu.volume = 0;
+        musicMenu.Play();
+        float lerp = 0;
+        while (lerp < 1)
+        {
+            lerp += Time.deltaTime / backMenuDuration;
+            //Fade
+            musicIntro.volume = intVol * (1 - lerp);
+            musicLoop.volume = lopVol * (1 - lerp);
+            musicLoose.volume = losVol * (1 - lerp);
+            //Rise
+            musicMenu.volume = lerp;
+            yield return 0;
+        }
+        musicIntro.volume = 0;
+        musicLoop.volume = 0;
+        musicLoose.volume = 0;
+
+        musicMenu.volume = 1;
+    }
+
 }
