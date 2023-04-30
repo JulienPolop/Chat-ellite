@@ -37,7 +37,9 @@ public class MusicManager : MonoBehaviour
         transform.SetParent(null);
         DontDestroyOnLoad(this.gameObject);
 
-        if(Menu.instance != null)
+        Screen.fullScreen = true;
+
+        if (Menu.instance != null)
         {
             //Lunch menu music
             musicMenu.Play();
@@ -51,6 +53,12 @@ public class MusicManager : MonoBehaviour
     public void Update()
     {
         masterMixer.SetFloat("Volume", volumeCurve.Evaluate(volume));
+
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Screen.fullScreen = false;
+        }
     }
 
     IEnumerator MusiqueAndLoop()
