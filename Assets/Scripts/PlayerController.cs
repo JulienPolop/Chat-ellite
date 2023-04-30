@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
+        if (camera == null)
+            camera = LevelManager.instance.cam;
         if(LevelManager.instance != null)
             LevelManager.instance.ui_man.UpdateUIProjectiles(projectileCount);
     }
@@ -145,6 +147,8 @@ public class PlayerController : MonoBehaviour
         Projectile pr = collision.gameObject.GetComponent<Projectile>();
         if (pr != null)
         {
+            projectileCount++;
+            LevelManager.instance.ui_man.UpdateUIProjectiles(projectileCount);
             pr.DestroyThis();
         }
     }
@@ -191,15 +195,16 @@ public class PlayerController : MonoBehaviour
                 if (camera)
                     camera.ShakeCameraBig();
 
-                if (projectileCount > 0)
+                if (collectibleCount > 0)
                 {
-                    projectileCount--;
-                    LevelManager.instance.ui_man.UpdateUIProjectiles(projectileCount);
-                    Collectible proj = Instantiate(collectiblePrefab, myRigidBody.position, transform.rotation);
+                    collectibleCount--;
+                    LevelManager.instance.ui_man.UpdateUICollectibles(collectibleCount);
+                    Collectible coll = Instantiate(collectiblePrefab, myRigidBody.position, transform.rotation);
+                    LevelManager.instance.music.HitPlanet();
 
                     Vector2 direction = ((Vector2)collision.transform.position - myRigidBody.position).normalized;
-                    proj.GetComponent<Collider2D>().enabled = false;
-                    proj.GetComponent<Rigidbody2D>().velocity = -direction * collectibleSpeed;
+                    coll.GetComponent<Collider2D>().enabled = false;
+                    coll.GetComponent<Rigidbody2D>().velocity = -direction * collectibleSpeed;
                 }
             }
         //}
