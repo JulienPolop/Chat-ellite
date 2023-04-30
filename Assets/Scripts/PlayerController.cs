@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     public int projectileCount = 0;
     public int collectibleCount = 0;
     public float projectileSpeed = 2;
+    public GameObject projectileParticlePrefab;
+    public Transform shootSpawnPoint;
 
     [Header("Collectibles")] //Pour en relacher quand on tape rop fort une plan�te
     public Collectible collectiblePrefab;
@@ -53,12 +55,17 @@ public class PlayerController : MonoBehaviour
                     LevelManager.instance.ui_man.UpdateUIProjectiles(projectileCount);
                 Projectile proj = Instantiate(projectilePrefab, myRigidBody.position, transform.rotation);
                 proj.GetComponent<Rigidbody2D>().velocity = transform.up * projectileSpeed;
-                LevelManager.instance.music.Shoot();
+
+                if (LevelManager.instance != null)
+                    LevelManager.instance.music.Shoot();
             }
             else
             {
                 LevelManager.instance.music.Shoot_Empty();
             }
+
+            //will kill themself by themself
+            Instantiate(projectileParticlePrefab, shootSpawnPoint.position, transform.rotation);
         }
     }
 
