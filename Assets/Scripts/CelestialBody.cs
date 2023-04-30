@@ -20,7 +20,8 @@ public class CelestialBody : MonoBehaviour
     private void Start()
     {
         gravityCollider.radius = gravityDistance;
-        col = possibleColor[Random.Range(0, possibleColor.Count)];
+        if(possibleColor.Count != 0)
+            col = possibleColor[Random.Range(0, possibleColor.Count)];
         foreach (SpriteRenderer sR in coloredSprite)
         {
             sR.color = col;
