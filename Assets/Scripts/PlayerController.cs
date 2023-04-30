@@ -115,8 +115,15 @@ public class PlayerController : MonoBehaviour
         Collectible collectible = collision.gameObject.GetComponent<Collectible>();
         if (collectible != null)
         {
-            projectileCount++;
-            LevelManager.instance.ui_man.UpdateUIProjectiles(projectileCount);
+            collectibleCount++;
+            if(collectibleCount >= 3)
+            {
+                collectibleCount -= 3;
+                projectileCount++;
+                LevelManager.instance.ui_man.Cuisine();
+                LevelManager.instance.ui_man.UpdateUIProjectiles(projectileCount);
+            }
+            LevelManager.instance.ui_man.UpdateUICollectibles(collectibleCount);
             collectible.DestroyThis();
         }
     }
@@ -150,10 +157,10 @@ public class PlayerController : MonoBehaviour
             if (camera)
                 camera.ShakeCameraBig();
 
-            if (projectileCount > 0)
+            if (collectibleCount > 0)
             {
-                projectileCount--;
-                LevelManager.instance.ui_man.UpdateUIProjectiles(projectileCount);
+                collectibleCount--;
+                LevelManager.instance.ui_man.UpdateUICollectibles(collectibleCount);
                 Collectible proj = Instantiate(collectiblePrefab, myRigidBody.position, transform.rotation);
 
                 Vector2 direction = ((Vector2)collision.transform.position - myRigidBody.position).normalized;

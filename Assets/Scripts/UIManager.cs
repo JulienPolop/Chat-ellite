@@ -4,14 +4,35 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    public Animator collectibleGroup;
+    public TMPro.TMP_Text numberCollectibles;
+    private int lastNumberColl = 0;
+
+    public Animator cuisine;
+
     public Animator projectileGroup;
     public TMPro.TMP_Text numberProjectile;
     private int lastNumberProjo = 0;
 
-    public void UpdateUICollectibles()
+    public void UpdateUICollectibles(int numberColl)
     {
         //for now, just add one in the ingredient list
         //and make it appear
+        numberCollectibles.SetText(numberColl.ToString());
+
+        collectibleGroup.SetBool("Show", numberColl != 0);
+
+        if (lastNumberColl < numberColl)
+        {
+            collectibleGroup.SetTrigger("Add");
+        }
+
+        lastNumberColl = numberColl;
+    }
+
+    public void Cuisine()
+    {
+        cuisine.SetTrigger("Cook");
     }
     
 
