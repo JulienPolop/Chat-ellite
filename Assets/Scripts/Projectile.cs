@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
     public float timerCantBeCollected = 3f;
     private float timeRemaining = 0;
 
-    private bool canBeCollected = false;
+    public bool canBeCollected = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,19 +28,13 @@ public class Projectile : MonoBehaviour
             {
                 canBeCollected = true;
                 GetComponent<SpriteRenderer>().color = Color.green;
+                gameObject.layer = LayerMask.NameToLayer("Default");
             }
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public virtual void DestroyThis()
     {
-        PlayerController controller = GetComponent<PlayerController>();
-        if (collision != null && controller != null)
-        {
-            Debug.Log("Récupération du projectile, A Ajouter au compteur" + collision.gameObject.name);
-            Destroy(this.gameObject);
-
-            //Récupération
-        }
+        Destroy(this.gameObject);
     }
 }

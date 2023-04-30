@@ -128,6 +128,12 @@ public class PlayerController : MonoBehaviour
             LevelManager.instance.ui_man.UpdateUIProjectiles(projectileCount);
             collectible.DestroyThis();
         }
+
+        Projectile pr = collision.gameObject.GetComponent<Projectile>();
+        if (pr != null)
+        {
+            pr.DestroyThis();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -148,32 +154,40 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.relativeVelocity.magnitude);
-        if (collision.relativeVelocity.magnitude < 4)
-        {
-            if (camera)
-                camera.ShakeCameraLittle();
-        }
-        else if (collision.relativeVelocity.magnitude >= 4 && collision.relativeVelocity.magnitude < 8)
-        {
-            if (camera)
-                camera.ShakeCameraStandard();
-        }
-        else if (collision.relativeVelocity.magnitude >= 8)
-        {
-            if (camera)
-                camera.ShakeCameraBig();
-
-            if (projectileCount > 0)
+        //Projectile pr = collision.gameObject.GetComponent<Projectile>();
+        //if (pr != null)
+        //{
+        //    pr.DestroyThis();
+        //}
+        //else
+        //{
+            Debug.Log(collision.relativeVelocity.magnitude);
+            if (collision.relativeVelocity.magnitude < 4)
             {
-                projectileCount--;
-                LevelManager.instance.ui_man.UpdateUIProjectiles(projectileCount);
-                Collectible proj = Instantiate(collectiblePrefab, myRigidBody.position, transform.rotation);
-
-                Vector2 direction = ((Vector2)collision.transform.position - myRigidBody.position).normalized;
-                proj.GetComponent<Collider2D>().enabled = false;
-                proj.GetComponent<Rigidbody2D>().velocity = - direction * collectibleSpeed;
+                if (camera)
+                    camera.ShakeCameraLittle();
             }
-        }
+            else if (collision.relativeVelocity.magnitude >= 4 && collision.relativeVelocity.magnitude < 8)
+            {
+                if (camera)
+                    camera.ShakeCameraStandard();
+            }
+            else if (collision.relativeVelocity.magnitude >= 8)
+            {
+                if (camera)
+                    camera.ShakeCameraBig();
+
+                if (projectileCount > 0)
+                {
+                    projectileCount--;
+                    LevelManager.instance.ui_man.UpdateUIProjectiles(projectileCount);
+                    Collectible proj = Instantiate(collectiblePrefab, myRigidBody.position, transform.rotation);
+
+                    Vector2 direction = ((Vector2)collision.transform.position - myRigidBody.position).normalized;
+                    proj.GetComponent<Collider2D>().enabled = false;
+                    proj.GetComponent<Rigidbody2D>().velocity = -direction * collectibleSpeed;
+                }
+            }
+        //}
     }
 }
