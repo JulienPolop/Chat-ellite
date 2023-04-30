@@ -38,10 +38,13 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
+
+        if (LevelManager.instance == null) //menu case
+            return;
+
         if (camera == null)
             camera = LevelManager.instance.cam;
-        if(LevelManager.instance != null)
-            LevelManager.instance.ui_man.UpdateUIProjectiles(projectileCount);
+        LevelManager.instance.ui_man.UpdateUIProjectiles(projectileCount);
     }
 
     private void Update()

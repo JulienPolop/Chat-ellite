@@ -1304,11 +1304,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Pi
-
-
-
-    Horace RIBOUT'
+  m_text: "Pierre-Emmanuel Mac\xE9\n\n\nHorace Ribout"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f1b7a2ed812c3c14da7995ce136c817e, type: 2}
   m_sharedMaterial: {fileID: 8719637736230956760, guid: f1b7a2ed812c3c14da7995ce136c817e, type: 2}
@@ -1865,7 +1861,7 @@ MonoBehaviour:
 
 
 
-    Julvador'
+    Julvador - Julien Polop'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f1b7a2ed812c3c14da7995ce136c817e, type: 2}
   m_sharedMaterial: {fileID: 8719637736230956760, guid: f1b7a2ed812c3c14da7995ce136c817e, type: 2}
@@ -2875,6 +2871,22 @@ PrefabInstance:
     - target: {fileID: 3263834238199258016, guid: e0b761ac3707f0444a664ed38b59d764, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225909433981722014, guid: e0b761ac3707f0444a664ed38b59d764, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019278139488280141, guid: e0b761ac3707f0444a664ed38b59d764, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253729157513309052, guid: e0b761ac3707f0444a664ed38b59d764, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549450938521245850, guid: e0b761ac3707f0444a664ed38b59d764, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8044177487493987972, guid: e0b761ac3707f0444a664ed38b59d764, type: 3}
       propertyPath: m_IsActive
