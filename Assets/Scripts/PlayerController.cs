@@ -33,18 +33,18 @@ public class PlayerController : MonoBehaviour
     public GameObject cameraTarget;
     private Rigidbody2D myRigidBody;
     private List<CelestialBody> InInfluenceSphereCelestialBodies = new List<CelestialBody>(); // La liste des corps qui on une force d'influence sur nous
+    private UIManager ui_man;
 
     // Start is called before the first frame update
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
 
-        if (LevelManager.instance == null) //menu case
-            return;
-
-        if (camera == null)
+        ui_man = (LevelManager.instance == null ? Menu.instance.ui_man : LevelManager.instance.ui_man);
+        ui_man.UpdateUIProjectiles(projectileCount);
+        
+        if (camera == null && LevelManager.instance != null)
             camera = LevelManager.instance.cam;
-        LevelManager.instance.ui_man.UpdateUIProjectiles(projectileCount);
     }
 
     private void Update()
@@ -54,17 +54,15 @@ public class PlayerController : MonoBehaviour
             if (projectileCount > 0)
             {
                 projectileCount--;
-                if (LevelManager.instance != null)
-                    LevelManager.instance.ui_man.UpdateUIProjectiles(projectileCount);
+                ui_man.UpdateUIProjectiles(projectileCount);
                 Projectile proj = Instantiate(projectilePrefab, myRigidBody.position, transform.rotation);
                 proj.GetComponent<Rigidbody2D>().velocity = transform.up * projectileSpeed;
 
-                if (LevelManager.instance != null)
-                    LevelManager.instance.music.Shoot();
+                MusicManager.instance.Shoot();
             }
             else
             {
-                LevelManager.instance.music.Shoot_Empty();
+                MusicManager.instance.Shoot_Empty();
             }
 
             //will kill themself by themself
@@ -121,6 +119,8 @@ public class PlayerController : MonoBehaviour
         }
 
         Debug.Log("velocity"+ myRigidBody.velocity.magnitude * 1.3f);
+        if (camera == null) //early return in case of Menu
+            return;
         if (camera.TargetCamera == cameraTarget)
             camera.cameraSize = Math.Clamp(myRigidBody.velocity.magnitude * 1.3f, 4,10);
     }
@@ -146,11 +146,12 @@ public class PlayerController : MonoBehaviour
             {
                 collectibleCount -= 3;
                 projectileCount++;
-                LevelManager.instance.music.Cook();
-                LevelManager.instance.ui_man.Cuisine();
+                MusicManager.instance.Cook();
+                ui_man.Cuisine();
                 //Delay : it's call by the animation//LevelManager.instance.ui_man.UpdateUIProjectiles(projectileCount);
             }
-            LevelManager.instance.ui_man.UpdateUICollectibles(collectibleCount);
+
+            ui_man.UpdateUICollectibles(collectibleCount);
             collectible.DestroyThis();
         }
 
@@ -158,7 +159,7 @@ public class PlayerController : MonoBehaviour
         if (pr != null)
         {
             projectileCount++;
-            LevelManager.instance.ui_man.UpdateUIProjectiles(projectileCount);
+            ui_man.UpdateUIProjectiles(projectileCount);
             pr.DestroyThis();
         }
     }
@@ -208,9 +209,9 @@ public class PlayerController : MonoBehaviour
                 if (collectibleCount > 0)
                 {
                     collectibleCount--;
-                    LevelManager.instance.ui_man.UpdateUICollectibles(collectibleCount);
+                    ui_man.UpdateUICollectibles(collectibleCount);
                     Collectible coll = Instantiate(collectiblePrefab, myRigidBody.position, transform.rotation);
-                    LevelManager.instance.music.HitPlanet();
+                    MusicManager.instance.HitPlanet();
 
                     Vector2 direction = ((Vector2)collision.transform.position - myRigidBody.position).normalized;
                     coll.GetComponent<Collider2D>().enabled = false;

@@ -17,11 +17,12 @@ public class Alien : Collectible
     // Start is called before the first frame update
     void Start()
     {
-        cam = LevelManager.instance.cam;
-        RandomizePosAndCol();
+        if(LevelManager.instance != null)
+            cam = LevelManager.instance.cam;
+        RandomizeRotAndCol();
     }
 
-    void RandomizePosAndCol()
+    void RandomizeRotAndCol()
     {
         int randomRange = Random.Range(0, colorPossible.Count);
         visual.sprite = colorPossible[randomRange];
@@ -40,11 +41,13 @@ public class Alien : Collectible
 
     public override void DestroyThis()
     {
-        LevelManager.instance.spawner.KillAlien(this);
+        if (LevelManager.instance != null)
+            LevelManager.instance.spawner.KillAlien(this);
         //make some particule
         //or even animation !
         Instantiate(crushPrefab, this.transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)), null).startColor = col;
-        LevelManager.instance.music.CrushAlien();
+
+        MusicManager.instance.CrushAlien();
 
         //then : 
         base.DestroyThis();

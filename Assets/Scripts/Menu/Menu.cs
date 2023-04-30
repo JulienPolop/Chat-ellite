@@ -21,17 +21,10 @@ public class Menu : MonoBehaviour
 
     public PlayerController player;
     public MenuCamera cam;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public UIManager ui_man;
 
     // Update is called once per frame
     void Update()
     {
-        player.projectileCount = 100;
     }
 }

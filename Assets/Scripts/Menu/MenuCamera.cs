@@ -6,6 +6,8 @@ public class MenuCamera : MonoBehaviour
 {
 
     public float creditsPos = 8f;
+    public float tuto1Pos = -8f;
+    public float tuto2Pos = -16f;
 
     Vector3 startPos = new Vector3(0,0,-10);
     Vector3 targetPos = Vector3.zero;
@@ -22,6 +24,14 @@ public class MenuCamera : MonoBehaviour
         if (Menu.instance.player.transform.position.x > creditsPos)
         {
             targetPos = Vector3.right * creditsPos * 2 + Vector3.forward * -10;
+        }
+        else if(Menu.instance.player.transform.position.x < tuto2Pos)
+        {
+            targetPos = Vector3.left * creditsPos * 4 + Vector3.forward * -10;
+        }
+        else if(Menu.instance.player.transform.position.x < tuto1Pos)
+        {
+            targetPos = Vector3.left * creditsPos * 2 + Vector3.forward * -10;
         }
         else
         {
