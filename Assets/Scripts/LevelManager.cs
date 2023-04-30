@@ -27,6 +27,9 @@ public class LevelManager : MonoBehaviour
     public AlienSpawner spawner;
     public UIManager ui_man;
     public MusicManager music;
+    public TimerManager timer;
+
+    public bool loose = false;
 
     
     private void SetUpMissingElement()
@@ -50,6 +53,10 @@ public class LevelManager : MonoBehaviour
         if (music == null)
         {
             music = FindObjectOfType<MusicManager>();
+        }
+        if (timer == null)
+        {
+            timer = FindObjectOfType<TimerManager>();
         }
     }
 }

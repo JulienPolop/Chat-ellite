@@ -45,10 +45,16 @@ public class MusicManager : MonoBehaviour
     {
         canon_empty.PlayOneShot(canon_empty.clip);
     }
+    [SerializeField] private AudioSource feedShip;
+    public void FeedShip()
+    {
+        if(feedShip != null)
+            feedShip.PlayOneShot(feedShip.clip);
+    }
     [SerializeField] private AudioSource boingPlanet;
     public void HitPlanet()
     {
-        if(boingPlanet != null)
+        if (boingPlanet != null)
             boingPlanet.PlayOneShot(boingPlanet.clip);
     }
 

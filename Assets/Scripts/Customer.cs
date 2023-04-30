@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
+    public float timerGainWhenFeed = 15f;
+
+    public GameObject particleVictory;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,11 +24,22 @@ public class Customer : MonoBehaviour
     {
         Projectile proj = collision.gameObject.GetComponent<Projectile>();
         if (proj) {
+            MusicManager.instance.FeedShip();
+
+            if (Menu.instance != null)
+            {
+                Menu.instance.LaunchGame();
+            }
+            else
+            {
+                //Also spawn some good vide and a +20$ (textmesh pro) who disappear
+                LevelManager.instance.timer.AddTimer(timerGainWhenFeed, 1);
+            }
             //Point en plus
             Debug.Log("BIEN REMPLIT");
             Destroy(proj.gameObject);
 
-            //Ajout Timer
+            Instantiate(particleVictory, this.transform.position + Vector3.up * 1, Quaternion.identity, null);
         }
     }
 }

@@ -49,6 +49,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if(LevelManager.instance != null && LevelManager.instance.loose)
+        {
+            return;
+        }
+
         if (Input.GetButtonDown("Jump"))
         {
             if (projectileCount > 0)
@@ -73,6 +78,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (LevelManager.instance != null && LevelManager.instance.loose)
+        {
+            return;
+        }
         // R�cup�ration des entr�es du joueur
         float vertical = Input.GetAxis("Vertical");
         float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
@@ -118,7 +127,7 @@ public class PlayerController : MonoBehaviour
             reactor.SetFloat("Speed", myRigidBody.velocity.magnitude / 10f);
         }
 
-        Debug.Log("velocity"+ myRigidBody.velocity.magnitude * 1.3f);
+        //Debug.Log("velocity"+ myRigidBody.velocity.magnitude * 1.3f);
         if (camera == null) //early return in case of Menu
             return;
         if (camera.TargetCamera == cameraTarget)

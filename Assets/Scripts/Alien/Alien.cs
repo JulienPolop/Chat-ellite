@@ -42,7 +42,10 @@ public class Alien : Collectible
     public override void DestroyThis()
     {
         if (LevelManager.instance != null)
+        {
             LevelManager.instance.spawner.KillAlien(this);
+            LevelManager.instance.timer.AddAlienScore();
+        }
         //make some particule
         //or even animation !
         Instantiate(crushPrefab, this.transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)), null).startColor = col;

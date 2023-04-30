@@ -447,7 +447,7 @@ MonoBehaviour:
   crossFadeOffset: 1
   crossLostDuration: 0.5
   backMenuDuration: 1
-  volume: 0.2
+  volume: 0.3
   volumeCurve:
     serializedVersion: 2
     m_Curve:
@@ -494,6 +494,7 @@ MonoBehaviour:
   cook: {fileID: 67759960127990332}
   canon: {fileID: 4158789840686126221}
   canon_empty: {fileID: 1348759802949567393}
+  feedShip: {fileID: 0}
   boingPlanet: {fileID: 7934970765871017037}
 --- !u!1 &3410892399453501884
 GameObject:
