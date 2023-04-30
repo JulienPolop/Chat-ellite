@@ -1,16 +1,25 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public Camera Camera;
+
     [Header("Movements")]
-    public float InterpVelocity;
+    private float InterpVelocity;
     public float MinDistance;
     public float FollowDistance;
     public float Speed;
     public GameObject TargetCamera;
     public Vector3 Offset;
+
+    [Header("Size")]
+    public float cameraSize;
+    // starting value for the Lerp
+    static float t = 0.0f;
+
 
     [Header("Shake")]
     public float ShakeMagnitude;
@@ -26,11 +35,17 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //cameraSize = Camera.orthographicSize;
+    }
+
+    private void Update()
+    {
 
     }
 
     void FixedUpdate()
     {
+        //Lerp Position
         Vector3 posNoZ = transform.position;
         posNoZ.z = TargetCamera.transform.position.z;
 
@@ -42,7 +57,18 @@ public class CameraController : MonoBehaviour
         Vector3 nextPosition = Vector3.Lerp(transform.position, targetPos + Offset, 0.25f);
 
         transform.position = nextPosition + Offset;
+
+
+        //Lerp Size
+        float actualSize = Camera.orthographicSize;
+        float targetSize = cameraSize;
+        float nextSize = Mathf.Lerp(actualSize, targetSize, t);
+
+        Camera.orthographicSize = nextSize;
+
         LimitToBounds();
+
+        t += 0.001f * Time.deltaTime;
     }
 
     public void ShakeCamera(float shakeMagnitude, float durationLength, float shakeRate)

@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("References")]
     public new CameraController camera;
+    public GameObject cameraTarget;
     private Rigidbody2D myRigidBody;
     private List<CelestialBody> InInfluenceSphereCelestialBodies = new List<CelestialBody>(); // La liste des corps qui on une force d'influence sur nous
 
@@ -101,6 +102,10 @@ public class PlayerController : MonoBehaviour
         {
             reactor.SetFloat("Speed", myRigidBody.velocity.magnitude / 10f);
         }
+
+        Debug.Log("velocity"+ myRigidBody.velocity.magnitude * 1.3f);
+        if (camera.TargetCamera == cameraTarget)
+            camera.cameraSize = Math.Clamp(myRigidBody.velocity.magnitude * 1.3f, 4,10);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -109,7 +114,11 @@ public class PlayerController : MonoBehaviour
         if (cb != null)
         {
             InInfluenceSphereCelestialBodies.Add(cb);
+            Debug.Log("Remove Drag");
             myRigidBody.drag = 0;
+
+            camera.TargetCamera = cb.gameObject;
+            camera.cameraSize = cb.gravityDistance*1.2f;
         }
 
         Collectible collectible = collision.gameObject.GetComponent<Collectible>();
@@ -128,7 +137,12 @@ public class PlayerController : MonoBehaviour
         {
             InInfluenceSphereCelestialBodies.Remove(cb);
             if (InInfluenceSphereCelestialBodies.Count == 0)
+            {
                 myRigidBody.drag = 0.5f;
+
+                camera.TargetCamera = cameraTarget;
+                camera.cameraSize = 5;
+            }
         }
     }
 

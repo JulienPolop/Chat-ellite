@@ -8,6 +8,8 @@ public class CelestialBody : MonoBehaviour
     public float gravityDistance; // Distance maximal d'attraction appliqué au joueur à chaque frame
     public CircleCollider2D gravityCollider;
 
+    public float rotationSpeed = 0;
+
     private void Start()
     {
         gravityCollider.radius = gravityDistance;
@@ -16,6 +18,8 @@ public class CelestialBody : MonoBehaviour
     private void Update()
     {
         DrawCircle(this.gameObject, gravityDistance, 0.025f) ;
+
+        transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
     }
 
     //Pour dessiner quand le jeu est lancé
