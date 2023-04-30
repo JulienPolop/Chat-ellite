@@ -58,7 +58,7 @@ public class AlienSpawner : MonoBehaviour
         }
 
         Quaternion randomRot = Quaternion.Euler(0, 0, Random.Range(0, 360));
-        Alien alienCreated = Instantiate(alienPrefab, pos, randomRot, this.transform);
+        Alien alienCreated = Instantiate(alienPrefab, pos, randomRot);
         alienCreated.indexSpawnPoint = newIndex;
         aliensCreated.Add(alienCreated);
         alreadyTakePos.Add(newIndex);

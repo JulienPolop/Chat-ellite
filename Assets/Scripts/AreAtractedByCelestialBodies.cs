@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class AreAtractedByCelestialBodies : MonoBehaviour
 {
+    public float gravityForceMultiplier = 0.1f;
+
     private Rigidbody2D myRigidBody;
     private List<CelestialBody> InInfluenceSphereCelestialBodies = new List<CelestialBody>(); // La liste des corps qui on une force d'influence sur nous
 
@@ -23,7 +25,7 @@ public class AreAtractedByCelestialBodies : MonoBehaviour
         foreach (CelestialBody cb in InInfluenceSphereCelestialBodies)
         {
             Vector2 gravityDirection = (cb.GetComponent<Rigidbody2D>().position - myRigidBody.position).normalized;
-            myRigidBody.AddForce(gravityDirection * cb.gravityForce);
+            myRigidBody.AddForce(gravityDirection * cb.gravityForce * gravityForceMultiplier);
         }
     }
 

@@ -36,6 +36,9 @@ public class Alien : Collectible
         //float xPos = Random.Range(cam.BoundLeft, cam.BoundRight);
         //float yPos = Random.Range(cam.BoundBot, cam.BoundTop);
         //this.transform.position = new Vector3(xPos, yPos, 0);
+
+        this.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-3, 3), Random.Range(-3, 3));
+        this.GetComponent<Rigidbody2D>().angularVelocity = Random.Range(-30, 30);
     }
 
 

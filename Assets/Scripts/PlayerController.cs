@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -131,7 +132,12 @@ public class PlayerController : MonoBehaviour
         if (camera == null) //early return in case of Menu
             return;
         if (camera.TargetCamera == cameraTarget)
-            camera.cameraSize = Math.Clamp(myRigidBody.velocity.magnitude * 1.3f, 4,10);
+        {
+            cameraTarget.gameObject.transform.localPosition = Vector3.up * myRigidBody.velocity.magnitude * 2f;
+            camera.cameraSize = Math.Clamp(myRigidBody.velocity.magnitude * 1.3f, 4, 10);
+        }
+
+        Debug.Log("Player: " + myRigidBody.velocity + ", mag: " + myRigidBody.velocity.magnitude);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -140,11 +146,11 @@ public class PlayerController : MonoBehaviour
         if (cb != null)
         {
             InInfluenceSphereCelestialBodies.Add(cb);
-            Debug.Log("Remove Drag");
             myRigidBody.drag = 0;
 
-            camera.TargetCamera = cb.gameObject;
-            camera.cameraSize = cb.gravityDistance*1.2f;
+            CelestialBody newTarget = InInfluenceSphereCelestialBodies.OrderBy(p => p.gravityDistance).Last();
+            camera.TargetCamera = newTarget.gameObject;
+            camera.cameraSize = newTarget.gravityDistance * 1.2f;
         }
 
         Collectible collectible = collision.gameObject.GetComponent<Collectible>();
@@ -186,47 +192,42 @@ public class PlayerController : MonoBehaviour
                 camera.TargetCamera = cameraTarget;
                 camera.cameraSize = 5;
             }
+            else
+            {
+                CelestialBody newTarget = InInfluenceSphereCelestialBodies.OrderBy(p => p.gravityDistance).Last();
+                camera.TargetCamera = newTarget.gameObject;
+                camera.cameraSize = newTarget.gravityDistance * 1.2f;
+            }
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.relativeVelocity.magnitude < 4)
+        {
+            if (camera)
+                camera.ShakeCameraLittle();
+        }
+        else if (collision.relativeVelocity.magnitude >= 4 && collision.relativeVelocity.magnitude < 8)
+        {
+            if (camera)
+                camera.ShakeCameraStandard();
+        }
+        else if (collision.relativeVelocity.magnitude >= 8)
+        {
+            if (camera)
+                camera.ShakeCameraBig();
 
-        //Projectile pr = collision.gameObject.GetComponent<Projectile>();
-        //if (pr != null)
-        //{
-        //    pr.DestroyThis();
-        //}
-        //else
-        //{
-            Debug.Log(collision.relativeVelocity.magnitude);
-            if (collision.relativeVelocity.magnitude < 4)
+            if (collectibleCount > 0)
             {
-                if (camera)
-                    camera.ShakeCameraLittle();
-            }
-            else if (collision.relativeVelocity.magnitude >= 4 && collision.relativeVelocity.magnitude < 8)
-            {
-                if (camera)
-                    camera.ShakeCameraStandard();
-            }
-            else if (collision.relativeVelocity.magnitude >= 8)
-            {
-                if (camera)
-                    camera.ShakeCameraBig();
+                collectibleCount--;
+                LevelManager.instance.ui_man.UpdateUICollectibles(collectibleCount);
+                Collectible coll = Instantiate(collectiblePrefab, myRigidBody.position, transform.rotation);
+                LevelManager.instance.music.HitPlanet();
 
-                if (collectibleCount > 0)
-                {
-                    collectibleCount--;
-                    ui_man.UpdateUICollectibles(collectibleCount);
-                    Collectible coll = Instantiate(collectiblePrefab, myRigidBody.position, transform.rotation);
-                    MusicManager.instance.HitPlanet();
-
-                    Vector2 direction = ((Vector2)collision.transform.position - myRigidBody.position).normalized;
-                    coll.GetComponent<Collider2D>().enabled = false;
-                    coll.GetComponent<Rigidbody2D>().velocity = -direction * collectibleSpeed;
-                }
+                Vector2 direction = ((Vector2)collision.transform.position - myRigidBody.position).normalized;
+                coll.GetComponent<Rigidbody2D>().velocity = -direction * collectibleSpeed;
             }
-        //}
+        }
     }
 }
