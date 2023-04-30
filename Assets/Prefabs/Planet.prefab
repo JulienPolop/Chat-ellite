@@ -559,6 +559,18 @@ MonoBehaviour:
   - {fileID: 1385808927}
   speedAtmosphere: 1
   rotationSpeed: 0
+  coloredSprite:
+  - {fileID: 450114779}
+  - {fileID: 1077245284}
+  - {fileID: 1385808928}
+  - {fileID: 836781766}
+  possibleColor:
+  - {r: 0.4509804, g: 0.8509804, b: 0.7254902, a: 1}
+  - {r: 0, g: 0.5176471, b: 0.6, a: 1}
+  - {r: 0.36078432, g: 0.18431373, b: 0.18039216, a: 1}
+  - {r: 0.9098039, g: 0.8352941, b: 0.70980394, a: 1}
+  - {r: 0.50980395, g: 0.5254902, b: 0.94509804, a: 1}
+  col: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &2029781349579379423
 Rigidbody2D:
   serializedVersion: 4

@@ -471,6 +471,9 @@ MonoBehaviour:
   innerAtmosphere: []
   speedAtmosphere: 1
   rotationSpeed: 0
+  coloredSprite: []
+  possibleColor: []
+  col: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &186380674
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -730,6 +733,9 @@ MonoBehaviour:
   innerAtmosphere: []
   speedAtmosphere: 1
   rotationSpeed: 0
+  coloredSprite: []
+  possibleColor: []
+  col: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &236815432
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -989,6 +995,9 @@ MonoBehaviour:
   innerAtmosphere: []
   speedAtmosphere: 1
   rotationSpeed: 0
+  coloredSprite: []
+  possibleColor: []
+  col: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &264329227
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1316,6 +1325,9 @@ MonoBehaviour:
   innerAtmosphere: []
   speedAtmosphere: 1
   rotationSpeed: 0
+  coloredSprite: []
+  possibleColor: []
+  col: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &377351975
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1390,6 +1402,54 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 450114779, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: m_Color.b
+      value: 0.84483194
+      objectReference: {fileID: 0}
+    - target: {fileID: 450114779, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: m_Color.g
+      value: 0.630785
+      objectReference: {fileID: 0}
+    - target: {fileID: 450114779, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: m_Color.r
+      value: 0.990566
+      objectReference: {fileID: 0}
+    - target: {fileID: 836781766, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: m_Color.b
+      value: 0.84483194
+      objectReference: {fileID: 0}
+    - target: {fileID: 836781766, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: m_Color.g
+      value: 0.630785
+      objectReference: {fileID: 0}
+    - target: {fileID: 836781766, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: m_Color.r
+      value: 0.990566
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077245284, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: m_Color.b
+      value: 0.84483194
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077245284, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: m_Color.g
+      value: 0.630785
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077245284, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: m_Color.r
+      value: 0.990566
+      objectReference: {fileID: 0}
+    - target: {fileID: 1385808928, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: m_Color.b
+      value: 0.84483194
+      objectReference: {fileID: 0}
+    - target: {fileID: 1385808928, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: m_Color.g
+      value: 0.630785
+      objectReference: {fileID: 0}
+    - target: {fileID: 1385808928, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: m_Color.r
+      value: 0.990566
+      objectReference: {fileID: 0}
     - target: {fileID: 2029781349579379408, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1437,6 +1497,74 @@ PrefabInstance:
     - target: {fileID: 2029781349579379410, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
       propertyPath: m_Name
       value: Planet
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029781349579379420, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: possibleColor.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029781349579379420, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: possibleColor.Array.data[1].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029781349579379420, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: possibleColor.Array.data[1].b
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029781349579379420, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: possibleColor.Array.data[1].g
+      value: 0.5176471
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029781349579379420, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: possibleColor.Array.data[1].r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029781349579379420, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: possibleColor.Array.data[2].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029781349579379420, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: possibleColor.Array.data[2].b
+      value: 0.18039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029781349579379420, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: possibleColor.Array.data[2].g
+      value: 0.18431373
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029781349579379420, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: possibleColor.Array.data[2].r
+      value: 0.36078432
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029781349579379420, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: possibleColor.Array.data[3].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029781349579379420, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: possibleColor.Array.data[3].b
+      value: 0.70980394
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029781349579379420, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: possibleColor.Array.data[3].g
+      value: 0.8352941
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029781349579379420, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: possibleColor.Array.data[3].r
+      value: 0.9098039
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029781349579379420, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: possibleColor.Array.data[4].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029781349579379420, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: possibleColor.Array.data[4].b
+      value: 0.94509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029781349579379420, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: possibleColor.Array.data[4].g
+      value: 0.5254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029781349579379420, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
+      propertyPath: possibleColor.Array.data[4].r
+      value: 0.50980395
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2053ab9e10f7ca64d9be48d0036254f8, type: 3}
@@ -1661,6 +1789,9 @@ MonoBehaviour:
   innerAtmosphere: []
   speedAtmosphere: 1
   rotationSpeed: 0
+  coloredSprite: []
+  possibleColor: []
+  col: {r: 0, g: 0, b: 0, a: 0}
 --- !u!120 &1069720187
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1952,6 +2083,9 @@ MonoBehaviour:
   innerAtmosphere: []
   speedAtmosphere: 1
   rotationSpeed: 0
+  coloredSprite: []
+  possibleColor: []
+  col: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1119450657
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2211,6 +2345,9 @@ MonoBehaviour:
   innerAtmosphere: []
   speedAtmosphere: 1
   rotationSpeed: 0
+  coloredSprite: []
+  possibleColor: []
+  col: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1254874342
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2531,6 +2668,9 @@ MonoBehaviour:
   innerAtmosphere: []
   speedAtmosphere: 1
   rotationSpeed: 0
+  coloredSprite: []
+  possibleColor: []
+  col: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1536862038
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2790,6 +2930,9 @@ MonoBehaviour:
   innerAtmosphere: []
   speedAtmosphere: 1
   rotationSpeed: 0
+  coloredSprite: []
+  possibleColor: []
+  col: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1816352721
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3049,6 +3192,9 @@ MonoBehaviour:
   innerAtmosphere: []
   speedAtmosphere: 1
   rotationSpeed: 0
+  coloredSprite: []
+  possibleColor: []
+  col: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1841545684
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3308,6 +3454,9 @@ MonoBehaviour:
   innerAtmosphere: []
   speedAtmosphere: 1
   rotationSpeed: 0
+  coloredSprite: []
+  possibleColor: []
+  col: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &2026937837
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3567,6 +3716,9 @@ MonoBehaviour:
   innerAtmosphere: []
   speedAtmosphere: 1
   rotationSpeed: 0
+  coloredSprite: []
+  possibleColor: []
+  col: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &2073347920
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3826,6 +3978,9 @@ MonoBehaviour:
   innerAtmosphere: []
   speedAtmosphere: 1
   rotationSpeed: 0
+  coloredSprite: []
+  possibleColor: []
+  col: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &2112971129
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -13,13 +13,27 @@ public class CelestialBody : MonoBehaviour
 
     public float rotationSpeed = 0;
 
+    public List<SpriteRenderer> coloredSprite = new List<SpriteRenderer>();
+    public List<Color> possibleColor = new List<Color>();
+    public Color col;
+
     private void Start()
     {
         gravityCollider.radius = gravityDistance;
+        col = possibleColor[Random.Range(0, possibleColor.Count)];
+        foreach (SpriteRenderer sR in coloredSprite)
+        {
+            sR.color = col;
+        }
     }
 
     private void Update()
     {
+        foreach (SpriteRenderer sR in coloredSprite)
+        {
+            sR.color = col;
+        }
+
         DrawCircle(this.gameObject, gravityDistance, 0.025f) ;
 
         transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);

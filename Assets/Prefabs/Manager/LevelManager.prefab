@@ -2922,30 +2922,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 600937017052111261}
     m_Modifications:
-    - target: {fileID: 67759960127990332, guid: 0234c6f00b474f84181cf8df56701440, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 67759960127990332, guid: 0234c6f00b474f84181cf8df56701440, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 24300002, guid: 12bc0513e028c2c4a899a79307de7ce7, type: 2}
-    - target: {fileID: 970595116024437400, guid: 0234c6f00b474f84181cf8df56701440, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 970595116024437400, guid: 0234c6f00b474f84181cf8df56701440, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 24300002, guid: 12bc0513e028c2c4a899a79307de7ce7, type: 2}
-    - target: {fileID: 1348759802949567393, guid: 0234c6f00b474f84181cf8df56701440, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1348759802949567393, guid: 0234c6f00b474f84181cf8df56701440, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 24300002, guid: 12bc0513e028c2c4a899a79307de7ce7, type: 2}
     - target: {fileID: 3410892398851027168, guid: 0234c6f00b474f84181cf8df56701440, type: 3}
       propertyPath: m_Name
       value: MusicManager
@@ -2994,14 +2970,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4158789840686126221, guid: 0234c6f00b474f84181cf8df56701440, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4158789840686126221, guid: 0234c6f00b474f84181cf8df56701440, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 24300002, guid: 12bc0513e028c2c4a899a79307de7ce7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0234c6f00b474f84181cf8df56701440, type: 3}
 --- !u!4 &600937016048353861 stripped
