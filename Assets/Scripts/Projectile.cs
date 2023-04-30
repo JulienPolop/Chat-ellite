@@ -4,24 +4,37 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public float timerCantBeCollected = 3f;
+    private float timeRemaining = 0;
+
+    public bool canBeCollected = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        timeRemaining = timerCantBeCollected;
+        canBeCollected = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!canBeCollected)
+        {
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+            }
+            else
+            {
+                canBeCollected = true;
+                GetComponent<SpriteRenderer>().color = Color.green;
+                gameObject.layer = LayerMask.NameToLayer("Default");
+            }
+        }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public virtual void DestroyThis()
     {
-        if (collision != null)
-        {
-            Debug.Log("Proj dest"+ collision.gameObject.name);
-            Destroy(this.gameObject);
-        }
+        Destroy(this.gameObject);
     }
 }

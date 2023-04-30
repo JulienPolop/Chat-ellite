@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517359}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6.57, z: 0}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1046,6 +1046,7 @@ GameObject:
   - component: {fileID: 8125654281819105152}
   - component: {fileID: 8125654281819105215}
   - component: {fileID: 8125654281819105155}
+  - component: {fileID: 7130695916286276944}
   m_Layer: 3
   m_Name: Joueur
   m_TagString: Untagged
@@ -1085,9 +1086,12 @@ MonoBehaviour:
   positiveAddForce: 5
   negativeAddForce: 3
   rotationSpeed: 100
-  projectileCount: 0
   projectilePrefab: {fileID: -6483627547648016855, guid: b5d2c2d257f641548a09fbb4b7defffa, type: 3}
-  projectileSpeed: 2
+  projectileCount: 2
+  collectibleCount: 0
+  projectileSpeed: 10
+  collectiblePrefab: {fileID: -5484199660296323899, guid: 90fc711031aede14985e332bbe7fa24d, type: 3}
+  collectibleSpeed: 3
   reactors:
   - {fileID: 5887862428136425853}
   - {fileID: 8727219382572419429}
@@ -1097,6 +1101,8 @@ MonoBehaviour:
   reverseReactorTrails:
   - {fileID: 1626489837}
   - {fileID: 488585607}
+  camera: {fileID: 0}
+  cameraTarget: {fileID: 1517359}
 --- !u!50 &8125654281819105215
 Rigidbody2D:
   serializedVersion: 4
@@ -1133,4 +1139,20 @@ CapsuleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.2}
   m_Size: {x: 2.5, y: 4.5}
+  m_Direction: 0
+--- !u!70 &7130695916286276944
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8125654281819105214}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.09}
+  m_Size: {x: 5.71, y: 6.66}
   m_Direction: 0
