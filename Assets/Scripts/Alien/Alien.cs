@@ -31,6 +31,10 @@ public class Alien : Collectible
 
         this.transform.Rotate(0, 0, Random.Range(0, 360));
 
+
+        if (Menu.instance != null)
+            return;
+
         //Alien spawner decide for this
         ////For now : purely random pos.
         //float xPos = Random.Range(cam.BoundLeft, cam.BoundRight);
