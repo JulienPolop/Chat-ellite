@@ -60,8 +60,9 @@ public class TimerManager : MonoBehaviour
             }
             return;
         }
-
-        timerText.SetText((int)(timer * 100f) + " $");
-
+        
+        int minute = Mathf.FloorToInt(timer / 60f);
+        int second = Mathf.FloorToInt(timer % 60f);
+        timerText.SetText((minute < 10 ? "0" : "") + minute + " : " + (second < 10 ? "0" : "") + second);
     }
 }

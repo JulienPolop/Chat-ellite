@@ -3980,8 +3980,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2711873002250129893, guid: e0b761ac3707f0444a664ed38b59d764, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4294967295
+      propertyPath: m_text
+      value: 60 s
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711873002250129893, guid: e0b761ac3707f0444a664ed38b59d764, type: 3}
+      propertyPath: m_fontSize
+      value: 144
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711873002250129893, guid: e0b761ac3707f0444a664ed38b59d764, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 144
       objectReference: {fileID: 0}
     - target: {fileID: 3263834236673433131, guid: e0b761ac3707f0444a664ed38b59d764, type: 3}
       propertyPath: m_AnchorMax.x
