@@ -6,9 +6,13 @@ public class Alien : Collectible
 {
     public SpriteRenderer visual;
     public List<Sprite> colorPossible;
+    public List<Color> colorPossible_col;
+    private Color col;
 
     private CameraController cam;
     public int indexSpawnPoint;
+
+    public ParticleSystem crushPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +23,9 @@ public class Alien : Collectible
 
     void RandomizePosAndCol()
     {
-        int randomRange = Random.Range(0, colorPossible.Count - 1);
+        int randomRange = Random.Range(0, colorPossible.Count);
         visual.sprite = colorPossible[randomRange];
+        col = colorPossible_col[randomRange];
 
 
         this.transform.Rotate(0, 0, Random.Range(0, 360));
@@ -38,6 +43,8 @@ public class Alien : Collectible
         LevelManager.instance.spawner.KillAlien(this);
         //make some particule
         //or even animation !
+        Instantiate(crushPrefab, this.transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)), null).startColor = col;
+        LevelManager.instance.music.CrushAlien();
 
         //then : 
         base.DestroyThis();

@@ -50,6 +50,11 @@ public class PlayerController : MonoBehaviour
                     LevelManager.instance.ui_man.UpdateUIProjectiles(projectileCount);
                 Projectile proj = Instantiate(projectilePrefab, myRigidBody.position, transform.rotation);
                 proj.GetComponent<Rigidbody2D>().velocity = transform.up * projectileSpeed;
+                LevelManager.instance.music.Shoot();
+            }
+            else
+            {
+                LevelManager.instance.music.Shoot_Empty();
             }
         }
     }
@@ -120,8 +125,9 @@ public class PlayerController : MonoBehaviour
             {
                 collectibleCount -= 3;
                 projectileCount++;
+                LevelManager.instance.music.Cook();
                 LevelManager.instance.ui_man.Cuisine();
-                LevelManager.instance.ui_man.UpdateUIProjectiles(projectileCount);
+                //Delay : it's call by the animation//LevelManager.instance.ui_man.UpdateUIProjectiles(projectileCount);
             }
             LevelManager.instance.ui_man.UpdateUICollectibles(collectibleCount);
             collectible.DestroyThis();
@@ -163,6 +169,7 @@ public class PlayerController : MonoBehaviour
                 LevelManager.instance.ui_man.UpdateUICollectibles(collectibleCount);
                 Collectible proj = Instantiate(collectiblePrefab, myRigidBody.position, transform.rotation);
 
+                LevelManager.instance.music.HitPlanet();
                 Vector2 direction = ((Vector2)collision.transform.position - myRigidBody.position).normalized;
                 proj.GetComponent<Collider2D>().enabled = false;
                 proj.GetComponent<Rigidbody2D>().velocity = - direction * collectibleSpeed;

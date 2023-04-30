@@ -51,7 +51,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cc8bbdd8ef5a95e4aa8d446e2cc74c11, type: 3}
   - {fileID: 21300000, guid: 07861f732d59f2a438909affd409f2cf, type: 3}
   - {fileID: 21300000, guid: dd35018b2ef54174c8394329aa4e1dad, type: 3}
+  colorPossible_col:
+  - {r: 0, g: 0.8078432, b: 0.5921569, a: 1}
+  - {r: 0.9058824, g: 0.37254903, b: 0.08235294, a: 1}
+  - {r: 0.9215687, g: 0.86666673, b: 0.08627451, a: 1}
   indexSpawnPoint: 0
+  crushPrefab: {fileID: 6793657275941993285, guid: b5610ada933c3d042a795bfc9ed8b67e, type: 3}
 --- !u!58 &3304249607367240645
 CircleCollider2D:
   m_ObjectHideFlags: 0

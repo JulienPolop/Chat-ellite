@@ -24,6 +24,42 @@ public class MusicManager : MonoBehaviour
     public float volume = 1;
     public AnimationCurve volumeCurve;
 
+
+    [SerializeField] private AudioSource alien_crush;
+    public void CrushAlien()
+    {
+        alien_crush.PlayOneShot(alien_crush.clip);
+    }
+    [SerializeField] private AudioSource cook;
+    public void Cook()
+    {
+        cook.PlayOneShot(cook.clip);
+    }
+    [SerializeField] private AudioSource canon;
+    public void Shoot()
+    {
+        canon.PlayOneShot(canon.clip);
+    }
+    [SerializeField] private AudioSource canon_empty;
+    public void Shoot_Empty()
+    {
+        canon_empty.PlayOneShot(canon_empty.clip);
+    }
+    [SerializeField] private AudioSource boingPlanet;
+    public void HitPlanet()
+    {
+        if(boingPlanet != null)
+            boingPlanet.PlayOneShot(boingPlanet.clip);
+    }
+
+
+    //public AudioSource motor;
+    //public void CrushAlien()
+    //{
+    //    alien_crush.PlayOneShot(alien_crush.clip);
+    //}
+
+
     private void Start()
     {
         if(instance != null)

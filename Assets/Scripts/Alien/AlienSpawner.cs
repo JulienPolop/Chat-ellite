@@ -10,7 +10,7 @@ public class AlienSpawner : MonoBehaviour
     public List<Alien> aliensCreated = new List<Alien>();
     public int totalAlienMax = 30;
     private int lastPosIndex;
-    private List<int> alreadyTakePos = new List<int>(); 
+    private List<int> alreadyTakePos = new List<int>();
 
 
     // Start is called before the first frame update

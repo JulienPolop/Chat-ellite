@@ -37,7 +37,7 @@ public class Background : MonoBehaviour
         littleStars.Clear();
         for (int i = 0; i < 9; i++)
         {
-            int randomIndex = Random.Range(0, littleStars_Prefab.Count - 1);
+            int randomIndex = Random.Range(0, littleStars_Prefab.Count);
             GameObject prefab = littleStars_Prefab[randomIndex];
 
             Vector3 position = Vector3.right * littleStars_offset * ((i % 3) - 1)
@@ -58,7 +58,7 @@ public class Background : MonoBehaviour
         List<Transform> res = new List<Transform>();
         for (int i = 0; i < numberOfElement; i++)
         {
-            int randomIndex = Random.Range(0, prefabList.Count - 1);
+            int randomIndex = Random.Range(0, prefabList.Count);
             GameObject prefab = prefabList[randomIndex];
 
             float posX = this.transform.position.x - Random.Range(-treshold, treshold);
