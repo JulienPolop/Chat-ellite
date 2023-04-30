@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         CelestialBody cb = collision.gameObject.GetComponent<CelestialBody>(); ;
-        if (cb != null)
+        if (cb != null && cb.hasGravity)
         {
             InInfluenceSphereCelestialBodies.Add(cb);
             myRigidBody.drag = 0;
@@ -212,6 +212,8 @@ public class PlayerController : MonoBehaviour
         {
             if (camera)
                 camera.ShakeCameraStandard();
+
+            MusicManager.instance.HitPlanet();
         }
         else if (collision.relativeVelocity.magnitude >= 8)
         {
@@ -223,7 +225,7 @@ public class PlayerController : MonoBehaviour
                 collectibleCount--;
                 LevelManager.instance.ui_man.UpdateUICollectibles(collectibleCount);
                 Collectible coll = Instantiate(collectiblePrefab, myRigidBody.position, transform.rotation);
-                LevelManager.instance.music.HitPlanet();
+                MusicManager.instance.HitPlanet();
 
                 Vector2 direction = ((Vector2)collision.transform.position - myRigidBody.position).normalized;
                 coll.GetComponent<Rigidbody2D>().velocity = -direction * collectibleSpeed;

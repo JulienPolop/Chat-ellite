@@ -19,6 +19,9 @@ public class Alien : Collectible
     {
         if(LevelManager.instance != null)
             cam = LevelManager.instance.cam;
+
+        this.gameObject.layer = LayerMask.NameToLayer("Alien");
+
         RandomizeRotAndCol();
     }
 
