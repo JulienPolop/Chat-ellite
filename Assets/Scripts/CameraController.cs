@@ -62,7 +62,7 @@ public class CameraController : MonoBehaviour
         //Lerp Size
         float actualSize = Camera.orthographicSize;
         float targetSize = cameraSize;
-        float nextSize = Mathf.Lerp(actualSize, targetSize, t);
+        float nextSize = Mathf.Lerp(actualSize, targetSize, 0.01f);
 
         Camera.orthographicSize = nextSize;
 
