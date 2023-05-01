@@ -16897,7 +16897,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 600937016029130130, guid: a08be8ba4cc260c40a0900de807820e3, type: 3}
       propertyPath: totalAlienMax
-      value: 30
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 600937017052111260, guid: a08be8ba4cc260c40a0900de807820e3, type: 3}
       propertyPath: m_Name

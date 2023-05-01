@@ -103,7 +103,7 @@ public class MusicManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Screen.fullScreen = false;
+            Screen.fullScreen = !Screen.fullScreen;
         }
     }
 
