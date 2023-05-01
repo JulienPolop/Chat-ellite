@@ -27,7 +27,6 @@ public class Projectile : MonoBehaviour
             else
             {
                 canBeCollected = true;
-                GetComponent<SpriteRenderer>().color = Color.green;
                 gameObject.layer = LayerMask.NameToLayer("Default");
             }
         }
