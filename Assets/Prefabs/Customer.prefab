@@ -151,6 +151,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerGainWhenFeed: 15
   particleVictory: {fileID: 2483608906000620855, guid: 8de880386a48a574591f53553f838a7e, type: 3}
+  particleWhenNotFeed: {fileID: 2483608906000620855, guid: 29eafdbb42d943b4f84b65e4ce23e9d4, type: 3}
+  updateRotation: 1
+  isTarget: 0
+  ui: {fileID: 0}
+  cam: {fileID: 0}
+  alerte: {fileID: 0}
+  NeedToBeFed: 0
   startSpeed: 0
 --- !u!114 &4619303479794511815
 MonoBehaviour:

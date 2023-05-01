@@ -7,6 +7,7 @@ public class Customer : MonoBehaviour
     public float timerGainWhenFeed = 15f;
 
     public GameObject particleVictory;
+    public GameObject particleWhenNotFeed;
 
     private Vector2 lastPos;
     public bool updateRotation = true;
@@ -58,6 +59,8 @@ public class Customer : MonoBehaviour
         if (proj) {
             MusicManager.instance.FeedShip();
 
+            GameObject particle = particleWhenNotFeed;
+
             if (Menu.instance != null)
             {
                 Menu.instance.LaunchGame();
@@ -71,12 +74,12 @@ public class Customer : MonoBehaviour
                     RemoveAlert();
                     NeedToBeFed = false;
                     LevelManager.instance.ChoseCustomerToFeed();
+                    particle = particleVictory;
                 }
             }
             //Point en plus
             Destroy(proj.gameObject);
-
-            Instantiate(particleVictory, this.transform.position + Vector3.up * 1, Quaternion.identity, null);
+            Instantiate(particle, this.transform.position + Vector3.up * 1, Quaternion.identity, null);
         }
     }
 
