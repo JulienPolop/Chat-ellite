@@ -20,6 +20,7 @@ public class AutoKill : MonoBehaviour
 
     public void Init(int toGain)
     {
+        text = GetComponent<TMPro.TMP_Text>();
         text.SetText("+"+(int)toGain+"s");
     }
 
