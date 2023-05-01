@@ -18,6 +18,11 @@ public class AutoKill : MonoBehaviour
         timer = 0;
     }
 
+    public void Init(int toGain)
+    {
+        text.SetText("+"+(int)toGain+"s");
+    }
+
     private void Update()
     {
         if(particule != null)

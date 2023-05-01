@@ -61,6 +61,7 @@ public class Customer : MonoBehaviour
             MusicManager.instance.FeedShip();
 
             GameObject particle = particleWhenNotFeed;
+            int valueGain = (int)timerGainWhenFeed;
 
             if (Menu.instance != null)
             {
@@ -80,11 +81,12 @@ public class Customer : MonoBehaviour
                 else
                 {
                     LevelManager.instance.timer.AddTimer(timerGainWhenFeedNotNeeded, 1);
+                    valueGain = (int)timerGainWhenFeedNotNeeded;
                 }
             }
             //Point en plus
             Destroy(proj.gameObject);
-            Instantiate(particle, this.transform.position + Vector3.up * 1, Quaternion.identity, null);
+            Instantiate(particle, this.transform.position + Vector3.up * 1, Quaternion.identity, null).GetComponent<AutoKill>().Init(valueGain);
         }
     }
 
