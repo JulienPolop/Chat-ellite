@@ -10,13 +10,17 @@ public class TimerManager : MonoBehaviour
 
     public int menuDeliver = 0;
     public int alienKill = 0;
-    public int totalCash = 0;
+    public int totalCook = 0;
 
     public void AddTimer(float timingAdd, int addMenu = 0)
     {
-        totalCash += (int)timingAdd;
         timer += timingAdd;
         menuDeliver += addMenu;
+    }
+
+    public void AddMeal(int addMenu = 1)
+    {
+        totalCook += addMenu;
     }
 
     public void AddAlienScore(int numberOfAlienKill = 1)

@@ -14,9 +14,9 @@ public class Collectible : MonoBehaviour
     {
         if (!canBeCollected)
         {
-            if (timeRemaining > 0)
+            if (timeRemaining < timerCantBeCollected)
             {
-                timeRemaining -= Time.deltaTime;
+                timeRemaining += Time.deltaTime;
             }
             else
             {

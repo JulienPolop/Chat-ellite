@@ -7,6 +7,7 @@ public class AlerteAndArrow : MonoBehaviour
     public Transform target;
     public Camera cam;
     public GameObject warning;
+    public GameObject alterOnit;
     public GameObject arrow;
     public float offset;
     void Start()
@@ -24,11 +25,16 @@ public class AlerteAndArrow : MonoBehaviour
         {
 
             arrow.SetActive(false);
-            warning.transform.position = Objectpos;
+            warning.SetActive(false);
+            alterOnit.SetActive(true);
+            alterOnit.transform.position = Objectpos;
+
         }
         else
         {
             arrow.SetActive(true);
+            warning.SetActive(true);
+            alterOnit.SetActive(false);
 
             Vector3 screenCenter = new Vector3(Screen.width, Screen.height, 0) / 2;
 
@@ -97,5 +103,10 @@ public class AlerteAndArrow : MonoBehaviour
             arrow.transform.position = Objectpos;*/
             arrow.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
         }
+
+        //To have them at the right size (approximately)
+        alterOnit.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width * 45f / 1920f, Screen.height * 45f / 1080f);
+        warning.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width * 68f / 1920f, Screen.height * 68f / 1080f);
+        arrow.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width * 47f / 1920f, Screen.height * 30f / 1080f);
     }
 }

@@ -23,6 +23,18 @@ public class UIManager : MonoBehaviour
     public TMPro.TMP_Text scoreDollar;
     public TMPro.TMP_Text scoreAlien;
 
+    private void Start()
+    {
+        blackScreen.alpha = 1;
+    }
+
+    private void Update()
+    {
+        if (LevelManager.instance != null && LevelManager.instance.loose)
+            return;
+
+        blackScreen.alpha -= Time.deltaTime * 3f;
+    }
 
     public void UpdateUICollectibles(int numberColl)
     {
@@ -43,6 +55,9 @@ public class UIManager : MonoBehaviour
     public void Cuisine()
     {
         cuisine.SetTrigger("Cook");
+
+        if (LevelManager.instance != null)
+            LevelManager.instance.timer.AddMeal(1);
     }
     
 
@@ -116,7 +131,7 @@ public class UIManager : MonoBehaviour
     IEnumerator DisplayLoose_Coroutine()
     {
         scoreMenuDelivered.SetText(LevelManager.instance.timer.menuDeliver + " menus delivered.");
-        scoreDollar.SetText(LevelManager.instance.timer.totalCash * 100 + " dollars in total.");
+        scoreDollar.SetText(LevelManager.instance.timer.totalCook + " meal cooked in total.");
         scoreAlien.SetText(LevelManager.instance.timer.alienKill + " alien crushed.");
 
         float lerp = 0;
