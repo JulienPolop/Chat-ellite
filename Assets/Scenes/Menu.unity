@@ -5770,6 +5770,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1052468306444589639, guid: e0b761ac3707f0444a664ed38b59d764, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2809039018310759036, guid: e0b761ac3707f0444a664ed38b59d764, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
