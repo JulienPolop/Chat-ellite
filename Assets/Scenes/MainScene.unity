@@ -3822,11 +3822,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!82 &245357889 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 3061082724438108220, guid: a08be8ba4cc260c40a0900de807820e3, type: 3}
-  m_PrefabInstance: {fileID: 1180356935}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &245472656
 GameObject:
   m_ObjectHideFlags: 0
@@ -16904,10 +16899,6 @@ PrefabInstance:
       propertyPath: totalAlienMax
       value: 30
       objectReference: {fileID: 0}
-    - target: {fileID: 600937016048353862, guid: a08be8ba4cc260c40a0900de807820e3, type: 3}
-      propertyPath: feedShip
-      value: 
-      objectReference: {fileID: 245357889}
     - target: {fileID: 600937017052111260, guid: a08be8ba4cc260c40a0900de807820e3, type: 3}
       propertyPath: m_Name
       value: LevelManager
