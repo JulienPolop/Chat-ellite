@@ -22,15 +22,17 @@ public class UIManager : MonoBehaviour
     public TMPro.TMP_Text scoreMenuDelivered;
     public TMPro.TMP_Text scoreDollar;
     public TMPro.TMP_Text scoreAlien;
+    bool fadeInStart = false;
 
     private void Start()
     {
-        blackScreen.alpha = 1;
+        if(LevelManager.instance != null || (Menu.instance != null && !MusicManager.instance.firstLoad) )
+            blackScreen.alpha = 1;
     }
 
     private void Update()
     {
-        if (LevelManager.instance != null && LevelManager.instance.loose)
+        if (fadeInStart)
             return;
 
         blackScreen.alpha -= Time.deltaTime * 3f;
@@ -95,6 +97,7 @@ public class UIManager : MonoBehaviour
 
     IEnumerator FadeIn_Corout(float speed, int indexToLoad, float waitBefore)
     {
+        fadeInStart = true;
         yield return new WaitForSeconds(waitBefore);
 
         float lerp = blackScreen.alpha;
@@ -130,8 +133,12 @@ public class UIManager : MonoBehaviour
 
     IEnumerator DisplayLoose_Coroutine()
     {
+        int minute = Mathf.FloorToInt(LevelManager.instance.timer.totalTime / 60f);
+        int second = Mathf.FloorToInt(LevelManager.instance.timer.totalTime % 60f);
+        string s = (minute < 10 ? "0" : "") + minute + " min " + (second < 10 ? "0" : "") + second;
+
         scoreMenuDelivered.SetText(LevelManager.instance.timer.menuDeliver + " menus delivered.");
-        scoreDollar.SetText(LevelManager.instance.timer.totalCook + " meal cooked in total.");
+        scoreDollar.SetText("Work for "+ s + " second.");
         scoreAlien.SetText(LevelManager.instance.timer.alienKill + " alien crushed.");
 
         float lerp = 0;

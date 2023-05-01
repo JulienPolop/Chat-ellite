@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
-    public float timerGainWhenFeed = 15f;
+    public float timerGainWhenFeed = 60f;
+    public float timerGainWhenFeedNotNeeded = 15f;
 
     public GameObject particleVictory;
     public GameObject particleWhenNotFeed;
@@ -69,12 +70,16 @@ public class Customer : MonoBehaviour
             {
                 if (NeedToBeFed)
                 {
-                    //Also spawn some good vide and a +20$ (textmesh pro) who disappear
+                    //Also spawn some good vide and a +60$ (textmesh pro) who disappear
                     LevelManager.instance.timer.AddTimer(timerGainWhenFeed, 1);
                     RemoveAlert();
                     NeedToBeFed = false;
                     LevelManager.instance.ChoseCustomerToFeed();
                     particle = particleVictory;
+                }
+                else
+                {
+                    LevelManager.instance.timer.AddTimer(timerGainWhenFeedNotNeeded, 1);
                 }
             }
             //Point en plus
@@ -85,6 +90,8 @@ public class Customer : MonoBehaviour
 
     public void StartAlerte()
     {
+
+
         Debug.Log("StartAlerte");
         currentAlarms = Instantiate(alerte);
         currentAlarms.transform.parent = ui.transform;

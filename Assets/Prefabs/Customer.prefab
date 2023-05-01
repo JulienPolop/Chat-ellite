@@ -149,7 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac62d2d5b4623184981d6b2143dfb077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerGainWhenFeed: 15
+  timerGainWhenFeed: 60
+  timerGainWhenFeedNotNeeded: 15
   particleVictory: {fileID: 2483608906000620855, guid: 8de880386a48a574591f53553f838a7e, type: 3}
   particleWhenNotFeed: {fileID: 2483608906000620855, guid: 29eafdbb42d943b4f84b65e4ce23e9d4, type: 3}
   updateRotation: 1

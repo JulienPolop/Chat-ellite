@@ -6,6 +6,7 @@ using UnityEngine.Audio;
 public class MusicManager : MonoBehaviour
 {
     public static MusicManager instance = null;
+    public bool firstLoad = true;
 
     public AudioMixer masterMixer;
     public AudioSource musicMenu;
@@ -66,7 +67,7 @@ public class MusicManager : MonoBehaviour
     //}
 
 
-    private void Start()
+    private void Awake()
     {
         if(instance != null)
         {
@@ -76,6 +77,7 @@ public class MusicManager : MonoBehaviour
             return;
         }
         instance = this;
+        firstLoad = true;
         transform.SetParent(null);
         DontDestroyOnLoad(this.gameObject);
 
@@ -156,6 +158,7 @@ public class MusicManager : MonoBehaviour
 
     IEnumerator MenuToGame_Corout()
     {
+        firstLoad = false;
         if (loopCoroutine != null)
             StopCoroutine(loopCoroutine);
 
@@ -219,6 +222,7 @@ public class MusicManager : MonoBehaviour
 
     IEnumerator GameToMenu_Corout()
     {
+        firstLoad = false;
         float intVol = musicIntro.volume;
         float lopVol = musicLoop.volume;
         float losVol = musicLoose.volume;
