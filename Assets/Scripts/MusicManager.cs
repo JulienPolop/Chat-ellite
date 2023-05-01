@@ -112,24 +112,18 @@ public class MusicManager : MonoBehaviour
         if (musicIntro.clip != null)
         {
             musicIntro.Play();
-            yield return new WaitForSeconds(musicIntro.clip.length - crossFadeDuration - crossFadeOffset);
+            while (musicIntro.isPlaying)
+            {
+                yield return 0;
+            }          
         }
         else
         {
             yield return 0;
         }
-
-        musicLoop.volume = 0;
-        musicLoop.Play();
-        float lerp = 0;
-        while (lerp < 1)
-        {
-            lerp += Time.deltaTime / crossFadeDuration;
-            musicIntro.volume = 1 * (1-lerp);
-            musicLoop.volume = 1 * lerp;
-            yield return 0;
-        }
+        
         musicLoop.volume = 1;
+        musicLoop.Play();
         loopCoroutine = null;
     }
 
