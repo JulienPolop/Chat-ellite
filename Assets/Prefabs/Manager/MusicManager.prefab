@@ -566,12 +566,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed39b7f431255ea4a96e302d27a35b4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstLoad: 1
   masterMixer: {fileID: 24100000, guid: 12bc0513e028c2c4a899a79307de7ce7, type: 2}
   musicMenu: {fileID: 7030839777946250428}
   musicIntro: {fileID: 3410892399453501886}
   musicLoop: {fileID: 3410892398558577764}
   musicLoose: {fileID: 2289914757701000699}
-  menuFadeDuration: 1
+  menuFadeDuration: 2
   crossFadeDuration: 0.2
   crossFadeOffset: 1
   crossLostDuration: 0.5

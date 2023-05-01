@@ -86,10 +86,12 @@ public class MusicManager : MonoBehaviour
         if (Menu.instance != null)
         {
             //Lunch menu music
+            Debug.Log("Launch !", musicMenu.gameObject);
             musicMenu.Play();
         }
         else
         {
+            Debug.Log("Coroutine !");
             loopCoroutine = StartCoroutine(MusiqueAndLoop());
         }
     }
@@ -112,6 +114,7 @@ public class MusicManager : MonoBehaviour
         if (musicIntro.clip != null)
         {
             musicIntro.Play();
+            musicLoop.Stop();
             while (musicIntro.isPlaying)
             {
                 yield return 0;
@@ -121,7 +124,8 @@ public class MusicManager : MonoBehaviour
         {
             yield return 0;
         }
-        
+
+        musicIntro.Stop();
         musicLoop.volume = 1;
         musicLoop.Play();
         loopCoroutine = null;
@@ -164,6 +168,7 @@ public class MusicManager : MonoBehaviour
             yield return 0;
         }
         musicMenu.volume = 0;
+        musicMenu.Stop();
         loopCoroutine = StartCoroutine(MusiqueAndLoop());
     } 
 
