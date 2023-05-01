@@ -69,6 +69,9 @@ public class LevelManager : MonoBehaviour
 
     public void ChoseCustomerToFeed()
     {
+        if (customers.Count == 0)
+            return;
+
         Customer customer = customers[Random.Range(0, customers.Count -1)];
         customer.StartAlerte();
         customer.NeedToBeFed = true;
