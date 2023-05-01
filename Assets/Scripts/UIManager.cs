@@ -133,12 +133,12 @@ public class UIManager : MonoBehaviour
 
     IEnumerator DisplayLoose_Coroutine()
     {
-        int minute = Mathf.FloorToInt(LevelManager.instance.timer.totalTime / 60f);
-        int second = Mathf.FloorToInt(LevelManager.instance.timer.totalTime % 60f);
-        string s = (minute < 10 ? "0" : "") + minute + " min " + (second < 10 ? "0" : "") + second;
+        int minute = Mathf.FloorToInt((float)LevelManager.instance.timer.totalTime / 60f);
+        int second = Mathf.FloorToInt((float)LevelManager.instance.timer.totalTime % 60f);
+        string s = (minute < 10 ? "0" : "") + minute + " minute" + (minute == 0 ? "s" : "") + " and " + (second < 10 ? "0" : "") + second;
 
         scoreMenuDelivered.SetText(LevelManager.instance.timer.menuDeliver + " menus delivered.");
-        scoreDollar.SetText("Work for "+ s + " second.");
+        scoreDollar.SetText("Work for " + s + " second" + (second == 0 ? "s" : "") + ".");
         scoreAlien.SetText(LevelManager.instance.timer.alienKill + " alien crushed.");
 
         float lerp = 0;

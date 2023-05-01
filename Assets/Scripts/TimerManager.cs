@@ -13,6 +13,11 @@ public class TimerManager : MonoBehaviour
     public int totalCook = 0;
     public float totalTime = 0;
 
+    private void Start()
+    {
+        totalTime += timer;
+    }
+
     public void AddTimer(float timingAdd, int addMenu = 0)
     {
         timer += timingAdd;
