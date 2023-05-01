@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -20,6 +21,11 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        customers = FindObjectsOfType<Customer>().ToList();
+        ChoseCustomerToFeed();
+    }
 
 
     public PlayerController player;
@@ -28,6 +34,7 @@ public class LevelManager : MonoBehaviour
     public UIManager ui_man;
     public MusicManager music;
     public TimerManager timer;
+    public List<Customer> customers;
 
     public bool loose = false;
 
@@ -58,5 +65,12 @@ public class LevelManager : MonoBehaviour
         {
             timer = FindObjectOfType<TimerManager>();
         }
+    }
+
+    public void ChoseCustomerToFeed()
+    {
+        Customer customer = customers[Random.Range(0, customers.Count -1)];
+        customer.StartAlerte();
+        customer.NeedToBeFed = true;
     }
 }

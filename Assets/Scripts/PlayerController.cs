@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float positiveAddForce = 10.0f; // Force appliqu� � chaque frame lorsque le vaisseau doit avancer
     public float negativeAddForce = 10.0f; // Force appliqu� � chaque frame lorsque le vaisseau doit reculer
     public float rotationSpeed = 100.0f; // Vitesse de rotation du vaisseau
+    public float startSpeed = 0;
 
     [Header("Projectiles")]
     public Projectile projectilePrefab;
@@ -46,6 +47,8 @@ public class PlayerController : MonoBehaviour
         
         if (camera == null && LevelManager.instance != null)
             camera = LevelManager.instance.cam;
+
+        myRigidBody.velocity = transform.up * startSpeed;
     }
 
     private void Update()
@@ -133,11 +136,11 @@ public class PlayerController : MonoBehaviour
             return;
         if (camera.TargetCamera == cameraTarget)
         {
-            cameraTarget.gameObject.transform.localPosition = Vector3.up * myRigidBody.velocity.magnitude * 2f;
+            cameraTarget.gameObject.transform.localPosition = Vector3.up * myRigidBody.velocity.magnitude * 4f;
             camera.cameraSize = Math.Clamp(myRigidBody.velocity.magnitude * 1.3f, 4, 10);
         }
 
-        Debug.Log("Player: " + myRigidBody.velocity + ", mag: " + myRigidBody.velocity.magnitude);
+        //Debug.Log("Player: " + myRigidBody.velocity + ", mag: " + myRigidBody.velocity.magnitude);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

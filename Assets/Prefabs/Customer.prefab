@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4619303479794511815}
   - component: {fileID: 7202690793586857282}
   - component: {fileID: 7765312589970867647}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Customer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,6 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerGainWhenFeed: 15
   particleVictory: {fileID: 2483608906000620855, guid: 8de880386a48a574591f53553f838a7e, type: 3}
+  startSpeed: 0
 --- !u!114 &4619303479794511815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d71ee2337dcfa4f83b157c2ef95004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gravityForceMultiplier: 0.1
 --- !u!61 &7202690793586857282
 BoxCollider2D:
   m_ObjectHideFlags: 0

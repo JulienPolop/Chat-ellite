@@ -8,26 +8,49 @@ public class Customer : MonoBehaviour
 
     public GameObject particleVictory;
 
+    private Vector2 lastPos;
+    public bool updateRotation = true;
+
+    [Header("AlerteSystem")]
+    public bool isTarget;
+    public Transform ui;
+    public GameObject cam;
+    public GameObject alerte;
+    private GameObject currentAlarms;
+
+    public bool NeedToBeFed = false;
+
     // Start is called before the first frame update
 
     public float startSpeed;
     void Start()
     {
-        GetComponent<Rigidbody2D>().velocity = transform.up * startSpeed;
+        if (startSpeed > 0)
+            GetComponent<Rigidbody2D>().velocity = transform.up * startSpeed;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        // Récupérer la velocity de l'objet
-        Vector2 velocity = GetComponent<Rigidbody2D>().velocity;
+        if (updateRotation)
+        {
+            // Récupérer la velocity de l'objet
+            Vector2 pos = transform.position;
+            Vector2 velocity = (pos - lastPos);
 
-        // Calculer l'angle à appliquer à l'objet
-        float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
+            if (velocity.magnitude > 0.01)
+            {
+                // Calculer l'angle à appliquer à l'objet
+                float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
 
-        // Appliquer l'angle à l'objet
-        //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        GetComponent<Rigidbody2D>().rotation = angle - 90;
+                // Appliquer l'angle à l'objet
+                //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                GetComponent<Rigidbody2D>().rotation = angle - 90;
+
+                lastPos = pos;
+            }
+        }
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -41,14 +64,38 @@ public class Customer : MonoBehaviour
             }
             else
             {
-                //Also spawn some good vide and a +20$ (textmesh pro) who disappear
-                LevelManager.instance.timer.AddTimer(timerGainWhenFeed, 1);
+                if (NeedToBeFed)
+                {
+                    //Also spawn some good vide and a +20$ (textmesh pro) who disappear
+                    LevelManager.instance.timer.AddTimer(timerGainWhenFeed, 1);
+                    RemoveAlert();
+                    NeedToBeFed = false;
+                    LevelManager.instance.ChoseCustomerToFeed();
+                }
             }
             //Point en plus
-            Debug.Log("BIEN REMPLIT");
             Destroy(proj.gameObject);
 
             Instantiate(particleVictory, this.transform.position + Vector3.up * 1, Quaternion.identity, null);
         }
+    }
+
+    public void StartAlerte()
+    {
+        Debug.Log("StartAlerte");
+        currentAlarms = Instantiate(alerte);
+        currentAlarms.transform.parent = ui.transform;
+        currentAlarms.GetComponent<AlerteAndArrow>().cam = cam.GetComponent<Camera>();
+        currentAlarms.GetComponent<AlerteAndArrow>().target = this.gameObject.transform;
+
+        alerte.SetActive(true);
+        isTarget = true;
+    }
+
+    public void RemoveAlert()
+    {
+        isTarget = false;
+        if (currentAlarms)
+            Destroy(currentAlarms);
     }
 }
