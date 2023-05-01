@@ -58,7 +58,7 @@ public class CelestialBody : MonoBehaviour
 
         foreach (Transform atmos in innerAtmosphere)
         {
-            atmos.position += Vector3.right * speedAtmosphere * Time.deltaTime;
+            atmos.localPosition += Vector3.right * speedAtmosphere * Time.deltaTime;
             if(atmos.localPosition.x > 18)
             {
                 atmos.localPosition -= Vector3.right * 18 * 2;
