@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance = null;
+    private int lastIndex = -1;
 
     private void Awake()
     {
@@ -72,7 +74,14 @@ public class LevelManager : MonoBehaviour
         if (customers.Count == 0)
             return;
 
-        Customer customer = customers[Random.Range(0, customers.Count -1)];
+        int nextIndex = Random.Range(0, customers.Count - 1);
+        if (lastIndex != -1 && nextIndex == lastIndex)
+            nextIndex++;
+
+        if (nextIndex >= customers.Count)
+            nextIndex = 0;
+
+        Customer customer = customers[nextIndex];
         customer.StartAlerte();
         customer.NeedToBeFed = true;
     }

@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
         if (camera.TargetCamera == cameraTarget)
         {
             cameraTarget.gameObject.transform.localPosition = Vector3.up * myRigidBody.velocity.magnitude * 4f;
-            camera.cameraSize = Math.Clamp(myRigidBody.velocity.magnitude * 1.3f, 4, 10);
+            camera.cameraSize = Math.Clamp(myRigidBody.velocity.magnitude * 1.5f, 6, 14);
         }
 
         //Debug.Log("Player: " + myRigidBody.velocity + ", mag: " + myRigidBody.velocity.magnitude);
